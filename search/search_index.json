@@ -92,252 +92,252 @@
         }, 
         {
             "location": "/reference/accept-eula/", 
-            "text": "", 
+            "text": "Usage:\n  pivnet [OPTIONS] accept-eula [accept-eula-OPTIONS]\n\nApplication Options:\n  -v, --version                  Print the version of this CLI and exit\n      --format=[table|json|yaml] Format to print as (default: table)\n      --verbose                  Display verbose output\n      --profile=                 Name of profile (default: default)\n      --config=                  Path to config file (default: /Users/pivotal/.pivnetrc)\n\nHelp Options:\n  -h, --help                     Show this help message\n\n[accept-eula command options]\n      -p, --product-slug=        Product slug e.g. p-mysql\n      -r, --release-version=     Release version e.g. 0.1.2-rc1", 
             "title": "Accept EULA"
         }, 
         {
             "location": "/reference/add-file-group/", 
-            "text": "", 
+            "text": "Usage:\n  pivnet [OPTIONS] add-file-group [add-file-group-OPTIONS]\n\nApplication Options:\n  -v, --version                  Print the version of this CLI and exit\n      --format=[table|json|yaml] Format to print as (default: table)\n      --verbose                  Display verbose output\n      --profile=                 Name of profile (default: default)\n      --config=                  Path to config file (default: /Users/pivotal/.pivnetrc)\n\nHelp Options:\n  -h, --help                     Show this help message\n\n[add-file-group command options]\n      -p, --product-slug=        Product slug e.g. p-mysql\n      -i, --file-group-id=       Filegroup ID e.g. 1234\n      -r, --release-version=     Release version e.g. 0.1.2-rc1", 
             "title": "Add file group to release"
         }, 
         {
             "location": "/reference/add-product-file/", 
-            "text": "", 
+            "text": "Usage:\n  pivnet [OPTIONS] add-product-file [add-product-file-OPTIONS]\n\nApplication Options:\n  -v, --version                  Print the version of this CLI and exit\n      --format=[table|json|yaml] Format to print as (default: table)\n      --verbose                  Display verbose output\n      --profile=                 Name of profile (default: default)\n      --config=                  Path to config file (default: /Users/pivotal/.pivnetrc)\n\nHelp Options:\n  -h, --help                     Show this help message\n\n[add-product-file command options]\n      -p, --product-slug=        Product slug e.g. p-mysql\n      -r, --release-version=     Release version e.g. 0.1.2-rc1\n      -i, --product-file-id=     Product file ID e.g. 1234\n      -f, --file-group-id=       File group ID e.g. 1234", 
             "title": "Add product file to release"
         }, 
         {
             "location": "/reference/add-release-dependency/", 
-            "text": "", 
+            "text": "Usage:\n  pivnet [OPTIONS] add-release-dependency [add-release-dependency-OPTIONS]\n\nApplication Options:\n  -v, --version                        Print the version of this CLI and exit\n      --format=[table|json|yaml]       Format to print as (default: table)\n      --verbose                        Display verbose output\n      --profile=                       Name of profile (default: default)\n      --config=                        Path to config file (default: /Users/pivotal/.pivnetrc)\n\nHelp Options:\n  -h, --help                           Show this help message\n\n[add-release-dependency command options]\n      -p, --product-slug=              Product slug e.g. p-mysql\n      -r, --release-version=           Release version e.g. 0.1.2-rc1\n      -s, --dependent-product-slug=    Dependent product slug e.g. p-mysql\n      -u, --dependent-release-version= Dependent release version e.g. 0.1.2-rc1", 
             "title": "Add release dependency"
         }, 
         {
             "location": "/reference/add-release-upgrade-path/", 
-            "text": "", 
+            "text": "Usage:\n  pivnet [OPTIONS] add-release-upgrade-path [add-release-upgrade-path-OPTIONS]\n\nApplication Options:\n  -v, --version                       Print the version of this CLI and exit\n      --format=[table|json|yaml]      Format to print as (default: table)\n      --verbose                       Display verbose output\n      --profile=                      Name of profile (default: default)\n      --config=                       Path to config file (default: /Users/pivotal/.pivnetrc)\n\nHelp Options:\n  -h, --help                          Show this help message\n\n[add-release-upgrade-path command options]\n      -p, --product-slug=             Product slug e.g. p-mysql\n      -r, --release-version=          Release version e.g. 0.1.2-rc1\n      -u, --previous-release-version= Regex for previous release version e.g. 0.1.*", 
             "title": "Add release upgrade path"
         }, 
         {
             "location": "/reference/add-user-group/", 
-            "text": "", 
+            "text": "Usage:\n  pivnet [OPTIONS] add-user-group [add-user-group-OPTIONS]\n\nApplication Options:\n  -v, --version                  Print the version of this CLI and exit\n      --format=[table|json|yaml] Format to print as (default: table)\n      --verbose                  Display verbose output\n      --profile=                 Name of profile (default: default)\n      --config=                  Path to config file (default: /Users/pivotal/.pivnetrc)\n\nHelp Options:\n  -h, --help                     Show this help message\n\n[add-user-group command options]\n      -p, --product-slug=        Product slug e.g. p-mysql\n      -r, --release-version=     Release version e.g. 0.1.2-rc1\n      -i, --user-group-id=       User Group ID e.g. 1234", 
             "title": "Add user group to release"
         }, 
         {
             "location": "/reference/add-user-group-member/", 
-            "text": "", 
+            "text": "Usage:\n  pivnet [OPTIONS] add-user-group-member [add-user-group-member-OPTIONS]\n\nApplication Options:\n  -v, --version                  Print the version of this CLI and exit\n      --format=[table|json|yaml] Format to print as (default: table)\n      --verbose                  Display verbose output\n      --profile=                 Name of profile (default: default)\n      --config=                  Path to config file (default: /Users/pivotal/.pivnetrc)\n\nHelp Options:\n  -h, --help                     Show this help message\n\n[add-user-group-member command options]\n      -i, --user-group-id=       User group ID e.g. 1234\n          --member-email=        Member email address e.g. 1234\n          --admin                Whether the user should be an admin", 
             "title": "Add user group member to group"
         }, 
         {
             "location": "/reference/create-dependency-specifier/", 
-            "text": "", 
+            "text": "Usage:\n  pivnet [OPTIONS] create-dependency-specifier [create-dependency-specifier-OPTIONS]\n\nApplication Options:\n  -v, --version                     Print the version of this CLI and exit\n      --format=[table|json|yaml]    Format to print as (default: table)\n      --verbose                     Display verbose output\n      --profile=                    Name of profile (default: default)\n      --config=                     Path to config file (default: /Users/pivotal/.pivnetrc)\n\nHelp Options:\n  -h, --help                        Show this help message\n\n[create-dependency-specifier command options]\n      -p, --product-slug=           Product slug e.g. p-mysql\n      -r, --release-version=        Release version e.g. 0.1.2-rc1\n      -s, --dependent-product-slug= Dependent product slug e.g. p-mysql\n      -u, --specifier=              Specifier e.g. 1.2.*", 
             "title": "Create dependency specifier"
         }, 
         {
             "location": "/reference/create-file-group/", 
-            "text": "", 
+            "text": "Usage:\n  pivnet [OPTIONS] create-file-group [create-file-group-OPTIONS]\n\nApplication Options:\n  -v, --version                  Print the version of this CLI and exit\n      --format=[table|json|yaml] Format to print as (default: table)\n      --verbose                  Display verbose output\n      --profile=                 Name of profile (default: default)\n      --config=                  Path to config file (default: /Users/pivotal/.pivnetrc)\n\nHelp Options:\n  -h, --help                     Show this help message\n\n[create-file-group command options]\n      -p, --product-slug=        Product slug e.g. p-mysql\n          --name=                Name e.g. my_file_group", 
             "title": "Create file group"
         }, 
         {
             "location": "/reference/create-product-file/", 
-            "text": "", 
+            "text": "Usage:\n  pivnet [OPTIONS] create-product-file [create-product-file-OPTIONS]\n\nApplication Options:\n  -v, --version                  Print the version of this CLI and exit\n      --format=[table|json|yaml] Format to print as (default: table)\n      --verbose                  Display verbose output\n      --profile=                 Name of profile (default: default)\n      --config=                  Path to config file (default: /Users/pivotal/.pivnetrc)\n\nHelp Options:\n  -h, --help                     Show this help message\n\n[create-product-file command options]\n      -p, --product-slug=        Product slug e.g. 'p-mysql'\n          --name=                Name e.g. 'p-mysql 1.7.13'\n          --aws-object-key=      AWS Object Key e.g. 'product_files/P-MySQL/p-mysql-1.7.13.pivotal'\n          --file-type=           File Type e.g. 'Software'\n          --file-version=        File Version e.g. '1.7.13'\n          --md5=                 MD5 of file\n          --description=         Description of file\n          --docs-url=            URL of docs for file\n          --included-file=       Name of included file\n          --platform=            Platform of file\n          --released-at=         When file is marked for release e.g. '2016/01/16'\n          --system-requirement=  System-requirement of file", 
             "title": "Create product file"
         }, 
         {
             "location": "/reference/create-release/", 
-            "text": "", 
+            "text": "Usage:\n  pivnet [OPTIONS] create-release [create-release-OPTIONS]\n\nApplication Options:\n  -v, --version                  Print the version of this CLI and exit\n      --format=[table|json|yaml] Format to print as (default: table)\n      --verbose                  Display verbose output\n      --profile=                 Name of profile (default: default)\n      --config=                  Path to config file (default: /Users/pivotal/.pivnetrc)\n\nHelp Options:\n  -h, --help                     Show this help message\n\n[create-release command options]\n      -p, --product-slug=        Product slug e.g. p-mysql\n      -r, --release-version=     Release version e.g. 0.1.2-rc1\n      -t, --release-type=        Release type e.g. 'Minor Release'\n      -e, --eula-slug=           EULA slug e.g. pivotal_software_eula", 
             "title": "Create release"
         }, 
         {
             "location": "/reference/create-user-group/", 
-            "text": "", 
+            "text": "Usage:\n  pivnet [OPTIONS] create-user-group [create-user-group-OPTIONS]\n\nApplication Options:\n  -v, --version                  Print the version of this CLI and exit\n      --format=[table|json|yaml] Format to print as (default: table)\n      --verbose                  Display verbose output\n      --profile=                 Name of profile (default: default)\n      --config=                  Path to config file (default: /Users/pivotal/.pivnetrc)\n\nHelp Options:\n  -h, --help                     Show this help message\n\n[create-user-group command options]\n          --name=                Name e.g. all_users\n          --description=         Description e.g. 'All users in the world'\n          --member=              Email addresses of members to be added", 
             "title": "Create user group"
         }, 
         {
             "location": "/reference/curl/", 
-            "text": "", 
+            "text": "Usage:\n  pivnet [OPTIONS] curl [curl-OPTIONS] URL\n\nApplication Options:\n  -v, --version                  Print the version of this CLI and exit\n      --format=[table|json|yaml] Format to print as (default: table)\n      --verbose                  Display verbose output\n      --profile=                 Name of profile (default: default)\n      --config=                  Path to config file (default: /Users/pivotal/.pivnetrc)\n\nHelp Options:\n  -h, --help                     Show this help message\n\n[curl command options]\n      -X, --request=             Custom method e.g. PATCH\n      -d, --data=                Request data e.g. '{\nfoo\n:\nbar\n}'\n\n[curl command arguments]\n  URL:                           URL without host or API prefix e.g. /products/p-mysql/releases/3451", 
             "title": "Curl an endpoint"
         }, 
         {
             "location": "/reference/delete-dependency-specifier/", 
-            "text": "", 
+            "text": "Usage:\n  pivnet [OPTIONS] delete-dependency-specifier [delete-dependency-specifier-OPTIONS]\n\nApplication Options:\n  -v, --version                      Print the version of this CLI and exit\n      --format=[table|json|yaml]     Format to print as (default: table)\n      --verbose                      Display verbose output\n      --profile=                     Name of profile (default: default)\n      --config=                      Path to config file (default: /Users/pivotal/.pivnetrc)\n\nHelp Options:\n  -h, --help                         Show this help message\n\n[delete-dependency-specifier command options]\n      -p, --product-slug=            Product slug e.g. p-mysql\n      -r, --release-version=         Release version e.g. 0.1.2-rc1\n      -i, --dependency-specifier-id= Dependency specifier ID e.g. 1234", 
             "title": "Delete dependency specifier"
         }, 
         {
             "location": "/reference/delete-file-group/", 
-            "text": "", 
+            "text": "Usage:\n  pivnet [OPTIONS] delete-file-group [delete-file-group-OPTIONS]\n\nApplication Options:\n  -v, --version                  Print the version of this CLI and exit\n      --format=[table|json|yaml] Format to print as (default: table)\n      --verbose                  Display verbose output\n      --profile=                 Name of profile (default: default)\n      --config=                  Path to config file (default: /Users/pivotal/.pivnetrc)\n\nHelp Options:\n  -h, --help                     Show this help message\n\n[delete-file-group command options]\n      -p, --product-slug=        Product slug e.g. p-mysql\n      -i, --file-group-id=       File group ID e.g. 1234", 
             "title": "Delete file group"
         }, 
         {
             "location": "/reference/delete-product-file/", 
-            "text": "", 
+            "text": "Usage:\n  pivnet [OPTIONS] delete-product-file [delete-product-file-OPTIONS]\n\nApplication Options:\n  -v, --version                  Print the version of this CLI and exit\n      --format=[table|json|yaml] Format to print as (default: table)\n      --verbose                  Display verbose output\n      --profile=                 Name of profile (default: default)\n      --config=                  Path to config file (default: /Users/pivotal/.pivnetrc)\n\nHelp Options:\n  -h, --help                     Show this help message\n\n[delete-product-file command options]\n      -p, --product-slug=        Product slug e.g. p-mysql\n      -i, --product-file-id=     Product file ID e.g. 1234", 
             "title": "Delete product file"
         }, 
         {
             "location": "/reference/delete-release/", 
-            "text": "", 
+            "text": "Usage:\n  pivnet [OPTIONS] delete-release [delete-release-OPTIONS]\n\nApplication Options:\n  -v, --version                  Print the version of this CLI and exit\n      --format=[table|json|yaml] Format to print as (default: table)\n      --verbose                  Display verbose output\n      --profile=                 Name of profile (default: default)\n      --config=                  Path to config file (default: /Users/pivotal/.pivnetrc)\n\nHelp Options:\n  -h, --help                     Show this help message\n\n[delete-release command options]\n      -p, --product-slug=        Product slug e.g. p-mysql\n      -r, --release-version=     Release version e.g. 0.1.2-rc1", 
             "title": "Delete release"
         }, 
         {
             "location": "/reference/delete-user-group/", 
-            "text": "", 
+            "text": "Usage:\n  pivnet [OPTIONS] delete-user-group [delete-user-group-OPTIONS]\n\nApplication Options:\n  -v, --version                  Print the version of this CLI and exit\n      --format=[table|json|yaml] Format to print as (default: table)\n      --verbose                  Display verbose output\n      --profile=                 Name of profile (default: default)\n      --config=                  Path to config file (default: /Users/pivotal/.pivnetrc)\n\nHelp Options:\n  -h, --help                     Show this help message\n\n[delete-user-group command options]\n      -i, --user-group-id=       User group ID e.g. 1234", 
             "title": "Delete user group"
         }, 
         {
             "location": "/reference/dependency-specifier/", 
-            "text": "", 
+            "text": "Usage:\n  pivnet [OPTIONS] dependency-specifier [dependency-specifier-OPTIONS]\n\nApplication Options:\n  -v, --version                      Print the version of this CLI and exit\n      --format=[table|json|yaml]     Format to print as (default: table)\n      --verbose                      Display verbose output\n      --profile=                     Name of profile (default: default)\n      --config=                      Path to config file (default: /Users/pivotal/.pivnetrc)\n\nHelp Options:\n  -h, --help                         Show this help message\n\n[dependency-specifier command options]\n      -p, --product-slug=            Product slug e.g. p-mysql\n      -r, --release-version=         Release version e.g. 0.1.2-rc1\n      -i, --dependency-specifier-id= Dependency specifier ID e.g. 1234", 
             "title": "Get dependency specifier"
         }, 
         {
             "location": "/reference/dependency-specifiers/", 
-            "text": "", 
+            "text": "Usage:\n  pivnet [OPTIONS] dependency-specifiers [dependency-specifiers-OPTIONS]\n\nApplication Options:\n  -v, --version                  Print the version of this CLI and exit\n      --format=[table|json|yaml] Format to print as (default: table)\n      --verbose                  Display verbose output\n      --profile=                 Name of profile (default: default)\n      --config=                  Path to config file (default: /Users/pivotal/.pivnetrc)\n\nHelp Options:\n  -h, --help                     Show this help message\n\n[dependency-specifiers command options]\n      -p, --product-slug=        Product slug e.g. p-mysql\n      -r, --release-version=     Release version e.g. 0.1.2-rc1", 
             "title": "List dependency specifiers"
         }, 
         {
             "location": "/reference/download-product-files/", 
-            "text": "", 
+            "text": "Usage:\n  pivnet [OPTIONS] download-product-files [download-product-files-OPTIONS]\n\nApplication Options:\n  -v, --version                  Print the version of this CLI and exit\n      --format=[table|json|yaml] Format to print as (default: table)\n      --verbose                  Display verbose output\n      --profile=                 Name of profile (default: default)\n      --config=                  Path to config file (default: /Users/pivotal/.pivnetrc)\n\nHelp Options:\n  -h, --help                     Show this help message\n\n[download-product-files command options]\n      -p, --product-slug=        Product slug e.g. p-mysql\n      -r, --release-version=     Release version e.g. 0.1.2-rc1\n      -i, --product-file-id=     Product file ID e.g. 1234\n      -g, --glob=                Glob to match product name e.g. *aws*\n      -d, --download-dir=        Local directory to download files to e.g. /tmp/my-file/ (default: .)\n          --accept-eula          Automatically accept EULA if necessary", 
             "title": "Download product files"
         }, 
         {
             "location": "/reference/eula/", 
-            "text": "", 
+            "text": "Usage:\n  pivnet [OPTIONS] eula [eula-OPTIONS]\n\nApplication Options:\n  -v, --version                  Print the version of this CLI and exit\n      --format=[table|json|yaml] Format to print as (default: table)\n      --verbose                  Display verbose output\n      --profile=                 Name of profile (default: default)\n      --config=                  Path to config file (default: /Users/pivotal/.pivnetrc)\n\nHelp Options:\n  -h, --help                     Show this help message\n\n[eula command options]\n          --eula-slug=           EULA slug e.g. pivotal_software_eula", 
             "title": "Show EULA"
         }, 
         {
             "location": "/reference/eulas/", 
-            "text": "", 
+            "text": "Usage:\n  pivnet [OPTIONS] eulas\n\nApplication Options:\n  -v, --version                  Print the version of this CLI and exit\n      --format=[table|json|yaml] Format to print as (default: table)\n      --verbose                  Display verbose output\n      --profile=                 Name of profile (default: default)\n      --config=                  Path to config file (default: /Users/pivotal/.pivnetrc)\n\nHelp Options:\n  -h, --help                     Show this help message", 
             "title": "List EULAs"
         }, 
         {
             "location": "/reference/file-group/", 
-            "text": "", 
+            "text": "Usage:\n  pivnet [OPTIONS] file-group [file-group-OPTIONS]\n\nApplication Options:\n  -v, --version                  Print the version of this CLI and exit\n      --format=[table|json|yaml] Format to print as (default: table)\n      --verbose                  Display verbose output\n      --profile=                 Name of profile (default: default)\n      --config=                  Path to config file (default: /Users/pivotal/.pivnetrc)\n\nHelp Options:\n  -h, --help                     Show this help message\n\n[file-group command options]\n      -p, --product-slug=        Product slug e.g. p-mysql\n      -i, --file-group-id=       Filegroup ID e.g. 1234", 
             "title": "Show file group"
         }, 
         {
             "location": "/reference/file-groups/", 
-            "text": "", 
+            "text": "Usage:\n  pivnet [OPTIONS] file-groups [file-groups-OPTIONS]\n\nApplication Options:\n  -v, --version                  Print the version of this CLI and exit\n      --format=[table|json|yaml] Format to print as (default: table)\n      --verbose                  Display verbose output\n      --profile=                 Name of profile (default: default)\n      --config=                  Path to config file (default: /Users/pivotal/.pivnetrc)\n\nHelp Options:\n  -h, --help                     Show this help message\n\n[file-groups command options]\n      -p, --product-slug=        Product slug e.g. p-mysql\n      -r, --release-version=     Release version e.g. 0.1.2-rc1", 
             "title": "List file groups"
         }, 
         {
             "location": "/reference/help/", 
-            "text": "", 
+            "text": "Usage:\n  pivnet [OPTIONS] \ncommand\n\n\nApplication Options:\n  -v, --version                  Print the version of this CLI and exit\n      --format=[table|json|yaml] Format to print as (default: table)\n      --verbose                  Display verbose output\n      --profile=                 Name of profile (default: default)\n      --config=                  Path to config file (default: /Users/pivotal/.pivnetrc)\n\nHelp Options:\n  -h, --help                     Show this help message\n\nAvailable commands:\n  accept-eula                  Accept EULA (aliases: ae)\n  add-file-group               Add file group to release (aliases: afg)\n  add-product-file             Add product file to release (aliases: apf)\n  add-release-dependency       Add release dependency (aliases: ard)\n  add-release-upgrade-path     Add release upgrade path (aliases: arup)\n  add-user-group               Add user group to release (aliases: aug)\n  add-user-group-member        Add user group member to group (aliases: augm)\n  create-dependency-specifier  Create dependency specifier (aliases: cds)\n  create-file-group            Create file group (aliases: cfg)\n  create-product-file          Create product file (aliases: cpf)\n  create-release               Create release (aliases: cr)\n  create-user-group            Create user group (aliases: cug)\n  curl                         Curl an endpoint (aliases: c)\n  delete-dependency-specifier  Delete dependency specifier (aliases: dds)\n  delete-file-group            Delete file group (aliases: dfg)\n  delete-product-file          Delete product file (aliases: dpf)\n  delete-release               Delete release (aliases: dr)\n  delete-user-group            Delete user group (aliases: dug)\n  dependency-specifier         Get dependency specifier (aliases: ds)\n  dependency-specifiers        List dependency specifiers (aliases: dss)\n  download-product-files       Download product files (aliases: dlpf)\n  eula                         Show EULA (aliases: e)\n  eulas                        List EULAs (aliases: es)\n  file-group                   Show file group (aliases: fg)\n  file-groups                  List file groups (aliases: fgs)\n  help                         Print this help message (aliases: h)\n  login                        Log in to Pivotal Network. (aliases: l)\n  logout                       Log out from Pivotal Network.\n  product                      Show product (aliases: p)\n  product-file                 Show product file (aliases: pf)\n  product-files                List product files (aliases: pfs)\n  products                     List products (aliases: ps)\n  release                      Show release (aliases: r)\n  release-dependencies         List release dependencies (aliases: rds)\n  release-types                List release types (aliases: rts)\n  release-upgrade-paths        List release upgrade paths (aliases: rups)\n  releases                     List releases (aliases: rs)\n  remove-file-group            Remove file group from release (aliases: rfg)\n  remove-product-file          Remove product file from release (aliases: rpf)\n  remove-release-dependency    Remove release dependency (aliases: rrd)\n  remove-release-upgrade-path  Remove release upgrade path (aliases: rrup)\n  remove-user-group            Remove user group from release (aliases: rug)\n  remove-user-group-member     Remove user group member from group (aliases: rugm)\n  update-file-group            Update file group (aliases: ufg)\n  update-product-file          Update product file (aliases: upf)\n  update-release               Update release (aliases: ur)\n  update-user-group            Update user group (aliases: uug)\n  user-group                   Show user group (aliases: ug)\n  user-groups                  List user groups (aliases: ugs)\n  version                      Print the version of this CLI and exit (aliases: v)", 
             "title": "Print the help message"
         }, 
         {
             "location": "/reference/login/", 
-            "text": "", 
+            "text": "Usage:\n  pivnet [OPTIONS] login [login-OPTIONS]\n\nApplication Options:\n  -v, --version                  Print the version of this CLI and exit\n      --format=[table|json|yaml] Format to print as (default: table)\n      --verbose                  Display verbose output\n      --profile=                 Name of profile (default: default)\n      --config=                  Path to config file (default: /Users/pivotal/.pivnetrc)\n\nHelp Options:\n  -h, --help                     Show this help message\n\n[login command options]\n          --api-token=           Pivnet API Token\n          --host=                Pivnet API Host (default: https://network.pivotal.io)", 
             "title": "Log in to Pivotal Network"
         }, 
         {
             "location": "/reference/logout/", 
-            "text": "", 
+            "text": "Usage:\n  pivnet [OPTIONS] logout\n\nApplication Options:\n  -v, --version                  Print the version of this CLI and exit\n      --format=[table|json|yaml] Format to print as (default: table)\n      --verbose                  Display verbose output\n      --profile=                 Name of profile (default: default)\n      --config=                  Path to config file (default: /Users/pivotal/.pivnetrc)\n\nHelp Options:\n  -h, --help                     Show this help message", 
             "title": "Log out from Pivotal Network"
         }, 
         {
             "location": "/reference/product/", 
-            "text": "", 
+            "text": "Usage:\n  pivnet [OPTIONS] product [product-OPTIONS]\n\nApplication Options:\n  -v, --version                  Print the version of this CLI and exit\n      --format=[table|json|yaml] Format to print as (default: table)\n      --verbose                  Display verbose output\n      --profile=                 Name of profile (default: default)\n      --config=                  Path to config file (default: /Users/pivotal/.pivnetrc)\n\nHelp Options:\n  -h, --help                     Show this help message\n\n[product command options]\n      -p, --product-slug=        Product slug e.g. p-mysql", 
             "title": "Show product"
         }, 
         {
             "location": "/reference/product-file/", 
-            "text": "", 
+            "text": "Usage:\n  pivnet [OPTIONS] product-file [product-file-OPTIONS]\n\nApplication Options:\n  -v, --version                  Print the version of this CLI and exit\n      --format=[table|json|yaml] Format to print as (default: table)\n      --verbose                  Display verbose output\n      --profile=                 Name of profile (default: default)\n      --config=                  Path to config file (default: /Users/pivotal/.pivnetrc)\n\nHelp Options:\n  -h, --help                     Show this help message\n\n[product-file command options]\n      -p, --product-slug=        Product slug e.g. p-mysql\n      -r, --release-version=     Release version e.g. 0.1.2-rc1\n      -i, --product-file-id=     Product file ID e.g. 1234", 
             "title": "Show product file"
         }, 
         {
             "location": "/reference/product-files/", 
-            "text": "", 
+            "text": "Usage:\n  pivnet [OPTIONS] product-files [product-files-OPTIONS]\n\nApplication Options:\n  -v, --version                  Print the version of this CLI and exit\n      --format=[table|json|yaml] Format to print as (default: table)\n      --verbose                  Display verbose output\n      --profile=                 Name of profile (default: default)\n      --config=                  Path to config file (default: /Users/pivotal/.pivnetrc)\n\nHelp Options:\n  -h, --help                     Show this help message\n\n[product-files command options]\n      -p, --product-slug=        Product slug e.g. p-mysql\n      -r, --release-version=     Release version e.g. 0.1.2-rc1", 
             "title": "List product files"
         }, 
         {
             "location": "/reference/products/", 
-            "text": "", 
+            "text": "Usage:\n  pivnet [OPTIONS] products\n\nApplication Options:\n  -v, --version                  Print the version of this CLI and exit\n      --format=[table|json|yaml] Format to print as (default: table)\n      --verbose                  Display verbose output\n      --profile=                 Name of profile (default: default)\n      --config=                  Path to config file (default: /Users/pivotal/.pivnetrc)\n\nHelp Options:\n  -h, --help                     Show this help message", 
             "title": "List products"
         }, 
         {
             "location": "/reference/release/", 
-            "text": "", 
+            "text": "Usage:\n  pivnet [OPTIONS] release [release-OPTIONS]\n\nApplication Options:\n  -v, --version                  Print the version of this CLI and exit\n      --format=[table|json|yaml] Format to print as (default: table)\n      --verbose                  Display verbose output\n      --profile=                 Name of profile (default: default)\n      --config=                  Path to config file (default: /Users/pivotal/.pivnetrc)\n\nHelp Options:\n  -h, --help                     Show this help message\n\n[release command options]\n      -p, --product-slug=        Product slug e.g. p-mysql\n      -r, --release-version=     Release version e.g. 0.1.2-rc1", 
             "title": "Show release"
         }, 
         {
             "location": "/reference/release-dependencies/", 
-            "text": "", 
+            "text": "Usage:\n  pivnet [OPTIONS] release-dependencies [release-dependencies-OPTIONS]\n\nApplication Options:\n  -v, --version                  Print the version of this CLI and exit\n      --format=[table|json|yaml] Format to print as (default: table)\n      --verbose                  Display verbose output\n      --profile=                 Name of profile (default: default)\n      --config=                  Path to config file (default: /Users/pivotal/.pivnetrc)\n\nHelp Options:\n  -h, --help                     Show this help message\n\n[release-dependencies command options]\n      -p, --product-slug=        Product slug e.g. p-mysql\n      -r, --release-version=     Release version e.g. 0.1.2-rc1", 
             "title": "List release dependencies"
         }, 
         {
             "location": "/reference/release-types/", 
-            "text": "", 
+            "text": "Usage:\n  pivnet [OPTIONS] release-types\n\nApplication Options:\n  -v, --version                  Print the version of this CLI and exit\n      --format=[table|json|yaml] Format to print as (default: table)\n      --verbose                  Display verbose output\n      --profile=                 Name of profile (default: default)\n      --config=                  Path to config file (default: /Users/pivotal/.pivnetrc)\n\nHelp Options:\n  -h, --help                     Show this help message", 
             "title": "List release types"
         }, 
         {
             "location": "/reference/release-upgrade-paths/", 
-            "text": "", 
+            "text": "Usage:\n  pivnet [OPTIONS] release-upgrade-paths [release-upgrade-paths-OPTIONS]\n\nApplication Options:\n  -v, --version                  Print the version of this CLI and exit\n      --format=[table|json|yaml] Format to print as (default: table)\n      --verbose                  Display verbose output\n      --profile=                 Name of profile (default: default)\n      --config=                  Path to config file (default: /Users/pivotal/.pivnetrc)\n\nHelp Options:\n  -h, --help                     Show this help message\n\n[release-upgrade-paths command options]\n      -p, --product-slug=        Product slug e.g. p-mysql\n      -r, --release-version=     Release version e.g. 0.1.2-rc1", 
             "title": "List release upgrade paths"
         }, 
         {
             "location": "/reference/releases/", 
-            "text": "", 
+            "text": "Usage:\n  pivnet [OPTIONS] releases [releases-OPTIONS]\n\nApplication Options:\n  -v, --version                  Print the version of this CLI and exit\n      --format=[table|json|yaml] Format to print as (default: table)\n      --verbose                  Display verbose output\n      --profile=                 Name of profile (default: default)\n      --config=                  Path to config file (default: /Users/pivotal/.pivnetrc)\n\nHelp Options:\n  -h, --help                     Show this help message\n\n[releases command options]\n      -p, --product-slug=        Product slug e.g. p-mysql", 
             "title": "List releases"
         }, 
         {
             "location": "/reference/remove-file-group/", 
-            "text": "", 
+            "text": "Usage:\n  pivnet [OPTIONS] remove-file-group [remove-file-group-OPTIONS]\n\nApplication Options:\n  -v, --version                  Print the version of this CLI and exit\n      --format=[table|json|yaml] Format to print as (default: table)\n      --verbose                  Display verbose output\n      --profile=                 Name of profile (default: default)\n      --config=                  Path to config file (default: /Users/pivotal/.pivnetrc)\n\nHelp Options:\n  -h, --help                     Show this help message\n\n[remove-file-group command options]\n      -p, --product-slug=        Product slug e.g. p-mysql\n      -i, --file-group-id=       Filegroup ID e.g. 1234\n      -r, --release-version=     Release version e.g. 0.1.2-rc1", 
             "title": "Remove file group from release"
         }, 
         {
             "location": "/reference/remove-product-file/", 
-            "text": "", 
+            "text": "Usage:\n  pivnet [OPTIONS] remove-product-file [remove-product-file-OPTIONS]\n\nApplication Options:\n  -v, --version                  Print the version of this CLI and exit\n      --format=[table|json|yaml] Format to print as (default: table)\n      --verbose                  Display verbose output\n      --profile=                 Name of profile (default: default)\n      --config=                  Path to config file (default: /Users/pivotal/.pivnetrc)\n\nHelp Options:\n  -h, --help                     Show this help message\n\n[remove-product-file command options]\n      -p, --product-slug=        Product slug e.g. p-mysql\n      -r, --release-version=     Release version e.g. 0.1.2-rc1\n      -i, --product-file-id=     Product file ID e.g. 1234\n      -f, --file-group-id=       File group ID e.g. 1234", 
             "title": "Remove product file from release"
         }, 
         {
             "location": "/reference/remove-release-dependency/", 
-            "text": "", 
+            "text": "Usage:\n  pivnet [OPTIONS] remove-release-dependency [remove-release-dependency-OPTIONS]\n\nApplication Options:\n  -v, --version                        Print the version of this CLI and exit\n      --format=[table|json|yaml]       Format to print as (default: table)\n      --verbose                        Display verbose output\n      --profile=                       Name of profile (default: default)\n      --config=                        Path to config file (default: /Users/pivotal/.pivnetrc)\n\nHelp Options:\n  -h, --help                           Show this help message\n\n[remove-release-dependency command options]\n      -p, --product-slug=              Product slug e.g. p-mysql\n      -r, --release-version=           Release version e.g. 0.1.2-rc1\n      -s, --dependent-product-slug=    Dependent product slug e.g. p-mysql\n      -u, --dependent-release-version= Dependent release version e.g. 0.1.2-rc1", 
             "title": "Remove release dependency"
         }, 
         {
             "location": "/reference/remove-release-upgrade-path/", 
-            "text": "", 
+            "text": "Usage:\n  pivnet [OPTIONS] remove-release-upgrade-path [remove-release-upgrade-path-OPTIONS]\n\nApplication Options:\n  -v, --version                       Print the version of this CLI and exit\n      --format=[table|json|yaml]      Format to print as (default: table)\n      --verbose                       Display verbose output\n      --profile=                      Name of profile (default: default)\n      --config=                       Path to config file (default: /Users/pivotal/.pivnetrc)\n\nHelp Options:\n  -h, --help                          Show this help message\n\n[remove-release-upgrade-path command options]\n      -p, --product-slug=             Product slug e.g. p-mysql\n      -r, --release-version=          Release version e.g. 0.1.2-rc1\n      -u, --previous-release-version= Regex for previous release version e.g. 0.1.*", 
             "title": "Remove release upgrade path"
         }, 
         {
             "location": "/reference/remove-user-group/", 
-            "text": "", 
+            "text": "Usage:\n  pivnet [OPTIONS] remove-user-group [remove-user-group-OPTIONS]\n\nApplication Options:\n  -v, --version                  Print the version of this CLI and exit\n      --format=[table|json|yaml] Format to print as (default: table)\n      --verbose                  Display verbose output\n      --profile=                 Name of profile (default: default)\n      --config=                  Path to config file (default: /Users/pivotal/.pivnetrc)\n\nHelp Options:\n  -h, --help                     Show this help message\n\n[remove-user-group command options]\n      -p, --product-slug=        Product slug e.g. p-mysql\n      -r, --release-version=     Release version e.g. 0.1.2-rc1\n      -i, --user-group-id=       User Group ID e.g. 1234", 
             "title": "Remove user group from release"
         }, 
         {
             "location": "/reference/remove-user-group-member/", 
-            "text": "", 
+            "text": "Usage:\n  pivnet [OPTIONS] remove-user-group-member [remove-user-group-member-OPTIONS]\n\nApplication Options:\n  -v, --version                  Print the version of this CLI and exit\n      --format=[table|json|yaml] Format to print as (default: table)\n      --verbose                  Display verbose output\n      --profile=                 Name of profile (default: default)\n      --config=                  Path to config file (default: /Users/pivotal/.pivnetrc)\n\nHelp Options:\n  -h, --help                     Show this help message\n\n[remove-user-group-member command options]\n      -i, --user-group-id=       User group ID e.g. 1234\n          --member-email=        Member email address e.g. 1234", 
             "title": "Remove user group member from group"
         }, 
         {
             "location": "/reference/update-file-group/", 
-            "text": "", 
+            "text": "Usage:\n  pivnet [OPTIONS] update-file-group [update-file-group-OPTIONS]\n\nApplication Options:\n  -v, --version                  Print the version of this CLI and exit\n      --format=[table|json|yaml] Format to print as (default: table)\n      --verbose                  Display verbose output\n      --profile=                 Name of profile (default: default)\n      --config=                  Path to config file (default: /Users/pivotal/.pivnetrc)\n\nHelp Options:\n  -h, --help                     Show this help message\n\n[update-file-group command options]\n      -p, --product-slug=        Product slug e.g. p-mysql\n      -i, --file-group-id=       Filegroup ID e.g. 1234\n          --name=                Name e.g. my_file_group", 
             "title": "Update file group"
         }, 
         {
             "location": "/reference/update-product-file/", 
-            "text": "", 
+            "text": "Usage:\n  pivnet [OPTIONS] update-product-file [update-product-file-OPTIONS]\n\nApplication Options:\n  -v, --version                  Print the version of this CLI and exit\n      --format=[table|json|yaml] Format to print as (default: table)\n      --verbose                  Display verbose output\n      --profile=                 Name of profile (default: default)\n      --config=                  Path to config file (default: /Users/pivotal/.pivnetrc)\n\nHelp Options:\n  -h, --help                     Show this help message\n\n[update-product-file command options]\n      -p, --product-slug=        Product slug e.g. p-mysql\n      -i, --product-file-id=     Product file ID e.g. 1234\n          --name=                Name e.g. p-mysql 1.7.13\n          --file-version=        File Version e.g. '1.7.13'\n          --md5=                 MD5 of file\n          --description=         File description e.g. 'This is a file description.'", 
             "title": "Update product file"
         }, 
         {
             "location": "/reference/update-release/", 
-            "text": "", 
+            "text": "Usage:\n  pivnet [OPTIONS] update-release [update-release-OPTIONS]\n\nApplication Options:\n  -v, --version                                                                                Print the version of this CLI and exit\n      --format=[table|json|yaml]                                                               Format to print as (default: table)\n      --verbose                                                                                Display verbose output\n      --profile=                                                                               Name of profile (default: default)\n      --config=                                                                                Path to config file (default: /Users/pivotal/.pivnetrc)\n\nHelp Options:\n  -h, --help                                                                                   Show this help message\n\n[update-release command options]\n      -p, --product-slug=                                                                      Product slug e.g. p-mysql\n      -r, --release-version=                                                                   Release version e.g. 0.1.2-rc1\n          --availability=[admins|selected-user-groups|all]                                     Release availability. Optional.\n          --release-type=[all-in-one|major|minor|service|maintenance|security|alpha|beta|edge] Release type. Optional.", 
             "title": "Update release"
         }, 
         {
             "location": "/reference/update-user-group/", 
-            "text": "", 
+            "text": "Usage:\n  pivnet [OPTIONS] update-user-group [update-user-group-OPTIONS]\n\nApplication Options:\n  -v, --version                  Print the version of this CLI and exit\n      --format=[table|json|yaml] Format to print as (default: table)\n      --verbose                  Display verbose output\n      --profile=                 Name of profile (default: default)\n      --config=                  Path to config file (default: /Users/pivotal/.pivnetrc)\n\nHelp Options:\n  -h, --help                     Show this help message\n\n[update-user-group command options]\n      -i, --user-group-id=       User group ID e.g. 1234\n          --name=                Name e.g. all_users\n          --description=         Description e.g. 'All users in the world'", 
             "title": "Update user group"
         }, 
         {
             "location": "/reference/user-group/", 
-            "text": "", 
+            "text": "Usage:\n  pivnet [OPTIONS] user-group [user-group-OPTIONS]\n\nApplication Options:\n  -v, --version                  Print the version of this CLI and exit\n      --format=[table|json|yaml] Format to print as (default: table)\n      --verbose                  Display verbose output\n      --profile=                 Name of profile (default: default)\n      --config=                  Path to config file (default: /Users/pivotal/.pivnetrc)\n\nHelp Options:\n  -h, --help                     Show this help message\n\n[user-group command options]\n      -i, --user-group-id=       User group ID e.g. 1234", 
             "title": "Show user group"
         }, 
         {
             "location": "/reference/user-groups/", 
-            "text": "", 
+            "text": "Usage:\n  pivnet [OPTIONS] user-groups [user-groups-OPTIONS]\n\nApplication Options:\n  -v, --version                  Print the version of this CLI and exit\n      --format=[table|json|yaml] Format to print as (default: table)\n      --verbose                  Display verbose output\n      --profile=                 Name of profile (default: default)\n      --config=                  Path to config file (default: /Users/pivotal/.pivnetrc)\n\nHelp Options:\n  -h, --help                     Show this help message\n\n[user-groups command options]\n      -p, --product-slug=        Product slug e.g. p-mysql\n      -r, --release-version=     Release version e.g. 0.1.2-rc1", 
             "title": "List user groups"
         }, 
         {
             "location": "/reference/version/", 
-            "text": "", 
+            "text": "Usage:\n  pivnet [OPTIONS] version\n\nApplication Options:\n  -v, --version                  Print the version of this CLI and exit\n      --format=[table|json|yaml] Format to print as (default: table)\n      --verbose                  Display verbose output\n      --profile=                 Name of profile (default: default)\n      --config=                  Path to config file (default: /Users/pivotal/.pivnetrc)\n\nHelp Options:\n  -h, --help                     Show this help message", 
             "title": "Print the version of this CLI and exit"
         }
     ]
