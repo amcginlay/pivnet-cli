@@ -4,29 +4,19 @@
     
         
     <url>
-     <loc>/</loc>
+     <loc>https://pivotal-cf.github.io/pivnet-cli/</loc>
      <lastmod>2018-05-11</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/about/license/</loc>
+     <loc>https://pivotal-cf.github.io/pivnet-cli/about/license/</loc>
      <lastmod>2018-05-11</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/about/project-management/</loc>
-     <lastmod>2018-05-11</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    
-
-    
-        
-    <url>
-     <loc>/installation/installing-the-cli/</loc>
+     <loc>https://pivotal-cf.github.io/pivnet-cli/about/project-management/</loc>
      <lastmod>2018-05-11</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -36,7 +26,7 @@
     
         
     <url>
-     <loc>/examples/usage/</loc>
+     <loc>https://pivotal-cf.github.io/pivnet-cli/installation/installing-the-cli/</loc>
      <lastmod>2018-05-11</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -46,25 +36,7 @@
     
         
     <url>
-     <loc>/development/prerequisites/</loc>
-     <lastmod>2018-05-11</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/development/dependencies/</loc>
-     <lastmod>2018-05-11</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/development/testing/</loc>
-     <lastmod>2018-05-11</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/development/contributing/</loc>
+     <loc>https://pivotal-cf.github.io/pivnet-cli/examples/usage/</loc>
      <lastmod>2018-05-11</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -74,301 +46,329 @@
     
         
     <url>
-     <loc>/reference/accept-eula/</loc>
+     <loc>https://pivotal-cf.github.io/pivnet-cli/development/prerequisites/</loc>
      <lastmod>2018-05-11</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/reference/add-file-group/</loc>
+     <loc>https://pivotal-cf.github.io/pivnet-cli/development/dependencies/</loc>
      <lastmod>2018-05-11</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/reference/add-product-file/</loc>
+     <loc>https://pivotal-cf.github.io/pivnet-cli/development/testing/</loc>
      <lastmod>2018-05-11</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/reference/add-release-dependency/</loc>
+     <loc>https://pivotal-cf.github.io/pivnet-cli/development/contributing/</loc>
+     <lastmod>2018-05-11</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>https://pivotal-cf.github.io/pivnet-cli/reference/accept-eula/</loc>
      <lastmod>2018-05-11</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/reference/add-release-upgrade-path/</loc>
+     <loc>https://pivotal-cf.github.io/pivnet-cli/reference/add-file-group/</loc>
      <lastmod>2018-05-11</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/reference/add-user-group/</loc>
+     <loc>https://pivotal-cf.github.io/pivnet-cli/reference/add-product-file/</loc>
      <lastmod>2018-05-11</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/reference/add-user-group-member/</loc>
+     <loc>https://pivotal-cf.github.io/pivnet-cli/reference/add-release-dependency/</loc>
      <lastmod>2018-05-11</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/reference/create-dependency-specifier/</loc>
+     <loc>https://pivotal-cf.github.io/pivnet-cli/reference/add-release-upgrade-path/</loc>
      <lastmod>2018-05-11</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/reference/create-file-group/</loc>
+     <loc>https://pivotal-cf.github.io/pivnet-cli/reference/add-user-group/</loc>
      <lastmod>2018-05-11</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/reference/create-product-file/</loc>
+     <loc>https://pivotal-cf.github.io/pivnet-cli/reference/add-user-group-member/</loc>
      <lastmod>2018-05-11</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/reference/create-release/</loc>
+     <loc>https://pivotal-cf.github.io/pivnet-cli/reference/create-dependency-specifier/</loc>
      <lastmod>2018-05-11</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/reference/create-user-group/</loc>
+     <loc>https://pivotal-cf.github.io/pivnet-cli/reference/create-file-group/</loc>
      <lastmod>2018-05-11</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/reference/curl/</loc>
+     <loc>https://pivotal-cf.github.io/pivnet-cli/reference/create-product-file/</loc>
      <lastmod>2018-05-11</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/reference/delete-dependency-specifier/</loc>
+     <loc>https://pivotal-cf.github.io/pivnet-cli/reference/create-release/</loc>
      <lastmod>2018-05-11</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/reference/delete-file-group/</loc>
+     <loc>https://pivotal-cf.github.io/pivnet-cli/reference/create-user-group/</loc>
      <lastmod>2018-05-11</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/reference/delete-product-file/</loc>
+     <loc>https://pivotal-cf.github.io/pivnet-cli/reference/curl/</loc>
      <lastmod>2018-05-11</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/reference/delete-release/</loc>
+     <loc>https://pivotal-cf.github.io/pivnet-cli/reference/delete-dependency-specifier/</loc>
      <lastmod>2018-05-11</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/reference/delete-user-group/</loc>
+     <loc>https://pivotal-cf.github.io/pivnet-cli/reference/delete-file-group/</loc>
      <lastmod>2018-05-11</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/reference/dependency-specifier/</loc>
+     <loc>https://pivotal-cf.github.io/pivnet-cli/reference/delete-product-file/</loc>
      <lastmod>2018-05-11</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/reference/dependency-specifiers/</loc>
+     <loc>https://pivotal-cf.github.io/pivnet-cli/reference/delete-release/</loc>
      <lastmod>2018-05-11</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/reference/download-product-files/</loc>
+     <loc>https://pivotal-cf.github.io/pivnet-cli/reference/delete-user-group/</loc>
      <lastmod>2018-05-11</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/reference/eula/</loc>
+     <loc>https://pivotal-cf.github.io/pivnet-cli/reference/dependency-specifier/</loc>
      <lastmod>2018-05-11</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/reference/eulas/</loc>
+     <loc>https://pivotal-cf.github.io/pivnet-cli/reference/dependency-specifiers/</loc>
      <lastmod>2018-05-11</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/reference/file-group/</loc>
+     <loc>https://pivotal-cf.github.io/pivnet-cli/reference/download-product-files/</loc>
      <lastmod>2018-05-11</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/reference/file-groups/</loc>
+     <loc>https://pivotal-cf.github.io/pivnet-cli/reference/eula/</loc>
      <lastmod>2018-05-11</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/reference/help/</loc>
+     <loc>https://pivotal-cf.github.io/pivnet-cli/reference/eulas/</loc>
      <lastmod>2018-05-11</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/reference/login/</loc>
+     <loc>https://pivotal-cf.github.io/pivnet-cli/reference/file-group/</loc>
      <lastmod>2018-05-11</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/reference/logout/</loc>
+     <loc>https://pivotal-cf.github.io/pivnet-cli/reference/file-groups/</loc>
      <lastmod>2018-05-11</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/reference/product/</loc>
+     <loc>https://pivotal-cf.github.io/pivnet-cli/reference/help/</loc>
      <lastmod>2018-05-11</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/reference/product-file/</loc>
+     <loc>https://pivotal-cf.github.io/pivnet-cli/reference/login/</loc>
      <lastmod>2018-05-11</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/reference/product-files/</loc>
+     <loc>https://pivotal-cf.github.io/pivnet-cli/reference/logout/</loc>
      <lastmod>2018-05-11</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/reference/products/</loc>
+     <loc>https://pivotal-cf.github.io/pivnet-cli/reference/product/</loc>
      <lastmod>2018-05-11</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/reference/release/</loc>
+     <loc>https://pivotal-cf.github.io/pivnet-cli/reference/product-file/</loc>
      <lastmod>2018-05-11</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/reference/release-dependencies/</loc>
+     <loc>https://pivotal-cf.github.io/pivnet-cli/reference/product-files/</loc>
      <lastmod>2018-05-11</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/reference/release-types/</loc>
+     <loc>https://pivotal-cf.github.io/pivnet-cli/reference/products/</loc>
      <lastmod>2018-05-11</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/reference/release-upgrade-paths/</loc>
+     <loc>https://pivotal-cf.github.io/pivnet-cli/reference/release/</loc>
      <lastmod>2018-05-11</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/reference/releases/</loc>
+     <loc>https://pivotal-cf.github.io/pivnet-cli/reference/release-dependencies/</loc>
      <lastmod>2018-05-11</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/reference/remove-file-group/</loc>
+     <loc>https://pivotal-cf.github.io/pivnet-cli/reference/release-types/</loc>
      <lastmod>2018-05-11</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/reference/remove-product-file/</loc>
+     <loc>https://pivotal-cf.github.io/pivnet-cli/reference/release-upgrade-paths/</loc>
      <lastmod>2018-05-11</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/reference/remove-release-dependency/</loc>
+     <loc>https://pivotal-cf.github.io/pivnet-cli/reference/releases/</loc>
      <lastmod>2018-05-11</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/reference/remove-release-upgrade-path/</loc>
+     <loc>https://pivotal-cf.github.io/pivnet-cli/reference/remove-file-group/</loc>
      <lastmod>2018-05-11</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/reference/remove-user-group/</loc>
+     <loc>https://pivotal-cf.github.io/pivnet-cli/reference/remove-product-file/</loc>
      <lastmod>2018-05-11</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/reference/remove-user-group-member/</loc>
+     <loc>https://pivotal-cf.github.io/pivnet-cli/reference/remove-release-dependency/</loc>
      <lastmod>2018-05-11</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/reference/update-file-group/</loc>
+     <loc>https://pivotal-cf.github.io/pivnet-cli/reference/remove-release-upgrade-path/</loc>
      <lastmod>2018-05-11</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/reference/update-product-file/</loc>
+     <loc>https://pivotal-cf.github.io/pivnet-cli/reference/remove-user-group/</loc>
      <lastmod>2018-05-11</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/reference/update-release/</loc>
+     <loc>https://pivotal-cf.github.io/pivnet-cli/reference/remove-user-group-member/</loc>
      <lastmod>2018-05-11</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/reference/update-user-group/</loc>
+     <loc>https://pivotal-cf.github.io/pivnet-cli/reference/update-file-group/</loc>
      <lastmod>2018-05-11</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/reference/user-group/</loc>
+     <loc>https://pivotal-cf.github.io/pivnet-cli/reference/update-product-file/</loc>
      <lastmod>2018-05-11</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/reference/user-groups/</loc>
+     <loc>https://pivotal-cf.github.io/pivnet-cli/reference/update-release/</loc>
      <lastmod>2018-05-11</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/reference/version/</loc>
+     <loc>https://pivotal-cf.github.io/pivnet-cli/reference/update-user-group/</loc>
+     <lastmod>2018-05-11</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://pivotal-cf.github.io/pivnet-cli/reference/user-group/</loc>
+     <lastmod>2018-05-11</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://pivotal-cf.github.io/pivnet-cli/reference/user-groups/</loc>
+     <lastmod>2018-05-11</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://pivotal-cf.github.io/pivnet-cli/reference/version/</loc>
      <lastmod>2018-05-11</lastmod>
      <changefreq>daily</changefreq>
     </url>
