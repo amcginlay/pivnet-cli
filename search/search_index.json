@@ -1,0 +1,344 @@
+{
+    "docs": [
+        {
+            "location": "/", 
+            "text": "Pivnet CLI\n\n\nInteract with \nPivotal Network\n from the command-line.", 
+            "title": "Pivnet CLI"
+        }, 
+        {
+            "location": "/#pivnet-cli", 
+            "text": "Interact with  Pivotal Network  from the command-line.", 
+            "title": "Pivnet CLI"
+        }, 
+        {
+            "location": "/about/license/", 
+            "text": "License\n\n\n Apache License \n\n\nVersion 2.0, January 2004\nhttp://www.apache.org/licenses/\n\n\nTERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION\n\n\n\n\n\n\nDefinitions.\n\n\n\"License\" shall mean the terms and conditions for use, reproduction,\nand distribution as defined by Sections 1 through 9 of this document.\n\n\n\"Licensor\" shall mean the copyright owner or entity authorized by\nthe copyright owner that is granting the License.\n\n\n\"Legal Entity\" shall mean the union of the acting entity and all\nother entities that control, are controlled by, or are under common\ncontrol with that entity. For the purposes of this definition,\n\"control\" means (i) the power, direct or indirect, to cause the\ndirection or management of such entity, whether by contract or\notherwise, or (ii) ownership of fifty percent (50%) or more of the\noutstanding shares, or (iii) beneficial ownership of such entity.\n\n\n\"You\" (or \"Your\") shall mean an individual or Legal Entity\nexercising permissions granted by this License.\n\n\n\"Source\" form shall mean the preferred form for making modifications,\nincluding but not limited to software source code, documentation\nsource, and configuration files.\n\n\n\"Object\" form shall mean any form resulting from mechanical\ntransformation or translation of a Source form, including but\nnot limited to compiled object code, generated documentation,\nand conversions to other media types.\n\n\n\"Work\" shall mean the work of authorship, whether in Source or\nObject form, made available under the License, as indicated by a\ncopyright notice that is included in or attached to the work\n(an example is provided in the Appendix below).\n\n\n\"Derivative Works\" shall mean any work, whether in Source or Object\nform, that is based on (or derived from) the Work and for which the\neditorial revisions, annotations, elaborations, or other modifications\nrepresent, as a whole, an original work of authorship. For the purposes\nof this License, Derivative Works shall not include works that remain\nseparable from, or merely link (or bind by name) to the interfaces of,\nthe Work and Derivative Works thereof.\n\n\n\"Contribution\" shall mean any work of authorship, including\nthe original version of the Work and any modifications or additions\nto that Work or Derivative Works thereof, that is intentionally\nsubmitted to Licensor for inclusion in the Work by the copyright owner\nor by an individual or Legal Entity authorized to submit on behalf of\nthe copyright owner. For the purposes of this definition, \"submitted\"\nmeans any form of electronic, verbal, or written communication sent\nto the Licensor or its representatives, including but not limited to\ncommunication on electronic mailing lists, source code control systems,\nand issue tracking systems that are managed by, or on behalf of, the\nLicensor for the purpose of discussing and improving the Work, but\nexcluding communication that is conspicuously marked or otherwise\ndesignated in writing by the copyright owner as \"Not a Contribution.\"\n\n\n\"Contributor\" shall mean Licensor and any individual or Legal Entity\non behalf of whom a Contribution has been received by Licensor and\nsubsequently incorporated within the Work.\n\n\n\n\n\n\nGrant of Copyright License.\n\n\nSubject to the terms and conditions of\nthis License, each Contributor hereby grants to You a perpetual,\nworldwide, non-exclusive, no-charge, royalty-free, irrevocable\ncopyright license to reproduce, prepare Derivative Works of,\npublicly display, publicly perform, sublicense, and distribute the\nWork and such Derivative Works in Source or Object form.\n\n\n\n\n\n\nGrant of Patent License.\n\n\nSubject to the terms and conditions of\nthis License, each Contributor hereby grants to You a perpetual,\nworldwide, non-exclusive, no-charge, royalty-free, irrevocable\n(except as stated in this section) patent license to make, have made,\nuse, offer to sell, sell, import, and otherwise transfer the Work,\nwhere such license applies only to those patent claims licensable\nby such Contributor that are necessarily infringed by their\nContribution(s) alone or by combination of their Contribution(s)\nwith the Work to which such Contribution(s) was submitted. If You\ninstitute patent litigation against any entity (including a\ncross-claim or counterclaim in a lawsuit) alleging that the Work\nor a Contribution incorporated within the Work constitutes direct\nor contributory patent infringement, then any patent licenses\ngranted to You under this License for that Work shall terminate\nas of the date such litigation is filed.\n\n\n\n\n\n\nRedistribution.\n\n\nYou may reproduce and distribute copies of the\nWork or Derivative Works thereof in any medium, with or without\nmodifications, and in Source or Object form, provided that You\nmeet the following conditions:\n\n\n(a) You must give any other recipients of the Work or\nDerivative Works a copy of this License; and\n\n\n(b) You must cause any modified files to carry prominent notices\nstating that You changed the files; and\n\n\n(c) You must retain, in the Source form of any Derivative Works\nthat You distribute, all copyright, patent, trademark, and\nattribution notices from the Source form of the Work,\nexcluding those notices that do not pertain to any part of\nthe Derivative Works; and\n\n\n(d) If the Work includes a \"NOTICE\" text file as part of its\ndistribution, then any Derivative Works that You distribute must\ninclude a readable copy of the attribution notices contained\nwithin such NOTICE file, excluding those notices that do not\npertain to any part of the Derivative Works, in at least one\nof the following places: within a NOTICE text file distributed\nas part of the Derivative Works; within the Source form or\ndocumentation, if provided along with the Derivative Works; or,\nwithin a display generated by the Derivative Works, if and\nwherever such third-party notices normally appear. The contents\nof the NOTICE file are for informational purposes only and\ndo not modify the License. You may add Your own attribution\nnotices within Derivative Works that You distribute, alongside\nor as an addendum to the NOTICE text from the Work, provided\nthat such additional attribution notices cannot be construed\nas modifying the License.\n\n\nYou may add Your own copyright statement to Your modifications and\nmay provide additional or different license terms and conditions\nfor use, reproduction, or distribution of Your modifications, or\nfor any such Derivative Works as a whole, provided Your use,\nreproduction, and distribution of the Work otherwise complies with\nthe conditions stated in this License.\n\n\n\n\n\n\nSubmission of Contributions.\n\n\nUnless You explicitly state otherwise,\nany Contribution intentionally submitted for inclusion in the Work\nby You to the Licensor shall be under the terms and conditions of\nthis License, without any additional terms or conditions.\nNotwithstanding the above, nothing herein shall supersede or modify\nthe terms of any separate license agreement you may have executed\nwith Licensor regarding such Contributions.\n\n\n\n\n\n\nTrademarks.\n\n\nThis License does not grant permission to use the trade\nnames, trademarks, service marks, or product names of the Licensor,\nexcept as required for reasonable and customary use in describing the\norigin of the Work and reproducing the content of the NOTICE file.\n\n\n\n\n\n\nDisclaimer of Warranty.\n\n\nUnless required by applicable law or\nagreed to in writing, Licensor provides the Work (and each\nContributor provides its Contributions) on an \"AS IS\" BASIS,\nWITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or\nimplied, including, without limitation, any warranties or conditions\nof TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A\nPARTICULAR PURPOSE. You are solely responsible for determining the\nappropriateness of using or redistributing the Work and assume any\nrisks associated with Your exercise of permissions under this License.\n\n\n\n\n\n\nLimitation of Liability.\n\n\nIn no event and under no legal theory,\nwhether in tort (including negligence), contract, or otherwise,\nunless required by applicable law (such as deliberate and grossly\nnegligent acts) or agreed to in writing, shall any Contributor be\nliable to You for damages, including any direct, indirect, special,\nincidental, or consequential damages of any character arising as a\nresult of this License or out of the use or inability to use the\nWork (including but not limited to damages for loss of goodwill,\nwork stoppage, computer failure or malfunction, or any and all\nother commercial damages or losses), even if such Contributor\nhas been advised of the possibility of such damages.\n\n\n\n\n\n\nAccepting Warranty or Additional Liability.\n\n\nWhile redistributing\nthe Work or Derivative Works thereof, You may choose to offer,\nand charge a fee for, acceptance of support, warranty, indemnity,\nor other liability obligations and/or rights consistent with this\nLicense. However, in accepting such obligations, You may act only\non Your own behalf and on Your sole responsibility, not on behalf\nof any other Contributor, and only if You agree to indemnify,\ndefend, and hold each Contributor harmless for any liability\nincurred by, or claims asserted against, such Contributor by reason\nof your accepting any such warranty or additional liability.\n\n\nEND OF TERMS AND CONDITIONS\n\n\nAPPENDIX: How to apply the Apache License to your work.\n\n\nTo apply the Apache License to your work, attach the following\nboilerplate notice, with the fields enclosed by brackets \"{}\"\nreplaced with your own identifying information. (Don't include\nthe brackets!)  The text should be enclosed in the appropriate\ncomment syntax for the file format. We also recommend that a\nfile or class name and description of purpose be included on the\nsame \"printed page\" as the copyright notice for easier\nidentification within third-party archives.\n\n\nCopyright {yyyy} {name of copyright owner}\n\n\nLicensed under the Apache License, Version 2.0 (the \"License\");\nyou may not use this file except in compliance with the License.\nYou may obtain a copy of the License at\n\n\nhttp://www.apache.org/licenses/LICENSE-2.0\n\n\nUnless required by applicable law or agreed to in writing, software\ndistributed under the License is distributed on an \"AS IS\" BASIS,\nWITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\nSee the License for the specific language governing permissions and\nlimitations under the License.", 
+            "title": "License"
+        }, 
+        {
+            "location": "/about/license/#license", 
+            "text": "Apache License   Version 2.0, January 2004\nhttp://www.apache.org/licenses/  TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION    Definitions.  \"License\" shall mean the terms and conditions for use, reproduction,\nand distribution as defined by Sections 1 through 9 of this document.  \"Licensor\" shall mean the copyright owner or entity authorized by\nthe copyright owner that is granting the License.  \"Legal Entity\" shall mean the union of the acting entity and all\nother entities that control, are controlled by, or are under common\ncontrol with that entity. For the purposes of this definition,\n\"control\" means (i) the power, direct or indirect, to cause the\ndirection or management of such entity, whether by contract or\notherwise, or (ii) ownership of fifty percent (50%) or more of the\noutstanding shares, or (iii) beneficial ownership of such entity.  \"You\" (or \"Your\") shall mean an individual or Legal Entity\nexercising permissions granted by this License.  \"Source\" form shall mean the preferred form for making modifications,\nincluding but not limited to software source code, documentation\nsource, and configuration files.  \"Object\" form shall mean any form resulting from mechanical\ntransformation or translation of a Source form, including but\nnot limited to compiled object code, generated documentation,\nand conversions to other media types.  \"Work\" shall mean the work of authorship, whether in Source or\nObject form, made available under the License, as indicated by a\ncopyright notice that is included in or attached to the work\n(an example is provided in the Appendix below).  \"Derivative Works\" shall mean any work, whether in Source or Object\nform, that is based on (or derived from) the Work and for which the\neditorial revisions, annotations, elaborations, or other modifications\nrepresent, as a whole, an original work of authorship. For the purposes\nof this License, Derivative Works shall not include works that remain\nseparable from, or merely link (or bind by name) to the interfaces of,\nthe Work and Derivative Works thereof.  \"Contribution\" shall mean any work of authorship, including\nthe original version of the Work and any modifications or additions\nto that Work or Derivative Works thereof, that is intentionally\nsubmitted to Licensor for inclusion in the Work by the copyright owner\nor by an individual or Legal Entity authorized to submit on behalf of\nthe copyright owner. For the purposes of this definition, \"submitted\"\nmeans any form of electronic, verbal, or written communication sent\nto the Licensor or its representatives, including but not limited to\ncommunication on electronic mailing lists, source code control systems,\nand issue tracking systems that are managed by, or on behalf of, the\nLicensor for the purpose of discussing and improving the Work, but\nexcluding communication that is conspicuously marked or otherwise\ndesignated in writing by the copyright owner as \"Not a Contribution.\"  \"Contributor\" shall mean Licensor and any individual or Legal Entity\non behalf of whom a Contribution has been received by Licensor and\nsubsequently incorporated within the Work.    Grant of Copyright License.  Subject to the terms and conditions of\nthis License, each Contributor hereby grants to You a perpetual,\nworldwide, non-exclusive, no-charge, royalty-free, irrevocable\ncopyright license to reproduce, prepare Derivative Works of,\npublicly display, publicly perform, sublicense, and distribute the\nWork and such Derivative Works in Source or Object form.    Grant of Patent License.  Subject to the terms and conditions of\nthis License, each Contributor hereby grants to You a perpetual,\nworldwide, non-exclusive, no-charge, royalty-free, irrevocable\n(except as stated in this section) patent license to make, have made,\nuse, offer to sell, sell, import, and otherwise transfer the Work,\nwhere such license applies only to those patent claims licensable\nby such Contributor that are necessarily infringed by their\nContribution(s) alone or by combination of their Contribution(s)\nwith the Work to which such Contribution(s) was submitted. If You\ninstitute patent litigation against any entity (including a\ncross-claim or counterclaim in a lawsuit) alleging that the Work\nor a Contribution incorporated within the Work constitutes direct\nor contributory patent infringement, then any patent licenses\ngranted to You under this License for that Work shall terminate\nas of the date such litigation is filed.    Redistribution.  You may reproduce and distribute copies of the\nWork or Derivative Works thereof in any medium, with or without\nmodifications, and in Source or Object form, provided that You\nmeet the following conditions:  (a) You must give any other recipients of the Work or\nDerivative Works a copy of this License; and  (b) You must cause any modified files to carry prominent notices\nstating that You changed the files; and  (c) You must retain, in the Source form of any Derivative Works\nthat You distribute, all copyright, patent, trademark, and\nattribution notices from the Source form of the Work,\nexcluding those notices that do not pertain to any part of\nthe Derivative Works; and  (d) If the Work includes a \"NOTICE\" text file as part of its\ndistribution, then any Derivative Works that You distribute must\ninclude a readable copy of the attribution notices contained\nwithin such NOTICE file, excluding those notices that do not\npertain to any part of the Derivative Works, in at least one\nof the following places: within a NOTICE text file distributed\nas part of the Derivative Works; within the Source form or\ndocumentation, if provided along with the Derivative Works; or,\nwithin a display generated by the Derivative Works, if and\nwherever such third-party notices normally appear. The contents\nof the NOTICE file are for informational purposes only and\ndo not modify the License. You may add Your own attribution\nnotices within Derivative Works that You distribute, alongside\nor as an addendum to the NOTICE text from the Work, provided\nthat such additional attribution notices cannot be construed\nas modifying the License.  You may add Your own copyright statement to Your modifications and\nmay provide additional or different license terms and conditions\nfor use, reproduction, or distribution of Your modifications, or\nfor any such Derivative Works as a whole, provided Your use,\nreproduction, and distribution of the Work otherwise complies with\nthe conditions stated in this License.    Submission of Contributions.  Unless You explicitly state otherwise,\nany Contribution intentionally submitted for inclusion in the Work\nby You to the Licensor shall be under the terms and conditions of\nthis License, without any additional terms or conditions.\nNotwithstanding the above, nothing herein shall supersede or modify\nthe terms of any separate license agreement you may have executed\nwith Licensor regarding such Contributions.    Trademarks.  This License does not grant permission to use the trade\nnames, trademarks, service marks, or product names of the Licensor,\nexcept as required for reasonable and customary use in describing the\norigin of the Work and reproducing the content of the NOTICE file.    Disclaimer of Warranty.  Unless required by applicable law or\nagreed to in writing, Licensor provides the Work (and each\nContributor provides its Contributions) on an \"AS IS\" BASIS,\nWITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or\nimplied, including, without limitation, any warranties or conditions\nof TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A\nPARTICULAR PURPOSE. You are solely responsible for determining the\nappropriateness of using or redistributing the Work and assume any\nrisks associated with Your exercise of permissions under this License.    Limitation of Liability.  In no event and under no legal theory,\nwhether in tort (including negligence), contract, or otherwise,\nunless required by applicable law (such as deliberate and grossly\nnegligent acts) or agreed to in writing, shall any Contributor be\nliable to You for damages, including any direct, indirect, special,\nincidental, or consequential damages of any character arising as a\nresult of this License or out of the use or inability to use the\nWork (including but not limited to damages for loss of goodwill,\nwork stoppage, computer failure or malfunction, or any and all\nother commercial damages or losses), even if such Contributor\nhas been advised of the possibility of such damages.    Accepting Warranty or Additional Liability.  While redistributing\nthe Work or Derivative Works thereof, You may choose to offer,\nand charge a fee for, acceptance of support, warranty, indemnity,\nor other liability obligations and/or rights consistent with this\nLicense. However, in accepting such obligations, You may act only\non Your own behalf and on Your sole responsibility, not on behalf\nof any other Contributor, and only if You agree to indemnify,\ndefend, and hold each Contributor harmless for any liability\nincurred by, or claims asserted against, such Contributor by reason\nof your accepting any such warranty or additional liability.  END OF TERMS AND CONDITIONS  APPENDIX: How to apply the Apache License to your work.  To apply the Apache License to your work, attach the following\nboilerplate notice, with the fields enclosed by brackets \"{}\"\nreplaced with your own identifying information. (Don't include\nthe brackets!)  The text should be enclosed in the appropriate\ncomment syntax for the file format. We also recommend that a\nfile or class name and description of purpose be included on the\nsame \"printed page\" as the copyright notice for easier\nidentification within third-party archives.  Copyright {yyyy} {name of copyright owner}  Licensed under the Apache License, Version 2.0 (the \"License\");\nyou may not use this file except in compliance with the License.\nYou may obtain a copy of the License at  http://www.apache.org/licenses/LICENSE-2.0  Unless required by applicable law or agreed to in writing, software\ndistributed under the License is distributed on an \"AS IS\" BASIS,\nWITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\nSee the License for the specific language governing permissions and\nlimitations under the License.", 
+            "title": "License"
+        }, 
+        {
+            "location": "/about/project-management/", 
+            "text": "Project Management\n\n\nThe CI for this project can be found\n\nhere\n\nand the scripts can be found in the\n\npivnet-resource-ci repo\n.\n\n\nThe roadmap is captured in \nPivotal Tracker\n.", 
+            "title": "Project Management"
+        }, 
+        {
+            "location": "/about/project-management/#project-management", 
+            "text": "The CI for this project can be found here \nand the scripts can be found in the pivnet-resource-ci repo .  The roadmap is captured in  Pivotal Tracker .", 
+            "title": "Project Management"
+        }, 
+        {
+            "location": "/installation/installing-the-cli/", 
+            "text": "Installing The CLI\n\n\nBinaries for various operating systems are provided with each release on the\n\nreleases page\n.\n\n\nInstall for OSX via \nhomebrew\n as follows:\n\n\nbrew install pivotal/tap/pivnet-cli\n\n\n\n\nTo install on linux, download the latest binary\n(see \nlatest release\n)\nand ensure the file is executable and on the path.", 
+            "title": "Installing the CLI"
+        }, 
+        {
+            "location": "/installation/installing-the-cli/#installing-the-cli", 
+            "text": "Binaries for various operating systems are provided with each release on the releases page .  Install for OSX via  homebrew  as follows:  brew install pivotal/tap/pivnet-cli  To install on linux, download the latest binary\n(see  latest release )\nand ensure the file is executable and on the path.", 
+            "title": "Installing The CLI"
+        }, 
+        {
+            "location": "/examples/usage/", 
+            "text": "Usage\n\n\nUsing the Pivnet CLI requires a valid \nPivotal Network API token\n or \nUAA Refresh Token\n.\n\n\nRefer to the\n\nofficial docs\n\nfor more details on obtaining a Pivotal Network API token.\n\n\nExample usage:\n\n\n$ pivnet login --api-token='my-api-token'\n$ pivnet products\n\n+-----+------------------------------------------------------+--------------------------------+\n| ID  |                         SLUG                         |              NAME              |\n+-----+------------------------------------------------------+--------------------------------+\n|  60 | elastic-runtime                                      | Pivotal Cloud Foundry Elastic  |\n|     |                                                      | Runtime                        |\n+-----+------------------------------------------------------+--------------------------------+\n\n$ pivnet r -p elastic-runtime -r 1.8.8 --format json \\\n  | jq '{\nid\n: .id, \nrelease_date\n: .release_date, \nrelease_type\n: .release_type}'\n\n{\n  \nid\n: 2555,\n  \nrelease_date\n: \n2016-10-13\n,\n  \nrelease_type\n: \nSecurity Release\n\n}", 
+            "title": "Usage"
+        }, 
+        {
+            "location": "/examples/usage/#usage", 
+            "text": "Using the Pivnet CLI requires a valid  Pivotal Network API token  or  UAA Refresh Token .  Refer to the official docs \nfor more details on obtaining a Pivotal Network API token.  Example usage:  $ pivnet login --api-token='my-api-token'\n$ pivnet products\n\n+-----+------------------------------------------------------+--------------------------------+\n| ID  |                         SLUG                         |              NAME              |\n+-----+------------------------------------------------------+--------------------------------+\n|  60 | elastic-runtime                                      | Pivotal Cloud Foundry Elastic  |\n|     |                                                      | Runtime                        |\n+-----+------------------------------------------------------+--------------------------------+\n\n$ pivnet r -p elastic-runtime -r 1.8.8 --format json \\\n  | jq '{ id : .id,  release_date : .release_date,  release_type : .release_type}'\n\n{\n   id : 2555,\n   release_date :  2016-10-13 ,\n   release_type :  Security Release \n}", 
+            "title": "Usage"
+        }, 
+        {
+            "location": "/development/prerequisites/", 
+            "text": "Prerequisites\n\n\nA valid install of golang \n= 1.6 is required.", 
+            "title": "Prerequisites"
+        }, 
+        {
+            "location": "/development/prerequisites/#prerequisites", 
+            "text": "A valid install of golang  = 1.6 is required.", 
+            "title": "Prerequisites"
+        }, 
+        {
+            "location": "/development/dependencies/", 
+            "text": "Dependencies\n\n\nDependencies are vendored in the \nvendor\n directory, according to the\n\ngolang 1.5 vendor experiment\n.\n\n\nNo action is require to fetch the vendored dependencies.", 
+            "title": "Dependencies"
+        }, 
+        {
+            "location": "/development/dependencies/#dependencies", 
+            "text": "Dependencies are vendored in the  vendor  directory, according to the golang 1.5 vendor experiment .  No action is require to fetch the vendored dependencies.", 
+            "title": "Dependencies"
+        }, 
+        {
+            "location": "/development/testing/", 
+            "text": "Testing\n\n\nInstall the ginkgo executable with:\n\n\ngo get -u github.com/onsi/ginkgo/ginkgo\n\n\n\n\nThe tests require a valid Pivotal Network API token and host.\n\n\nRefer to the\n\nofficial docs\n\nfor more details on obtaining a Pivotal Network API token.\n\n\nIt is advised to run the acceptance tests against the Pivotal Network integration\nenvironment endpoint i.e. \nHOST='https://pivnet-integration.cfapps.io'\n.\n\n\nRun the tests with the following command:\n\n\nAPI_TOKEN=my-token \\\nHOST='https://pivnet-integration.cfapps.io' \\\n./bin/test_all", 
+            "title": "Testing"
+        }, 
+        {
+            "location": "/development/testing/#testing", 
+            "text": "Install the ginkgo executable with:  go get -u github.com/onsi/ginkgo/ginkgo  The tests require a valid Pivotal Network API token and host.  Refer to the official docs \nfor more details on obtaining a Pivotal Network API token.  It is advised to run the acceptance tests against the Pivotal Network integration\nenvironment endpoint i.e.  HOST='https://pivnet-integration.cfapps.io' .  Run the tests with the following command:  API_TOKEN=my-token \\\nHOST='https://pivnet-integration.cfapps.io' \\\n./bin/test_all", 
+            "title": "Testing"
+        }, 
+        {
+            "location": "/development/contributing/", 
+            "text": "Contributing\n\n\nIf you have not previously done so, please fill out and\nsubmit the https://cla.pivotal.io/sign/pivotal[Contributor License Agreement].\n\n\nPlease make all pull requests to the \ndevelop\n branch, and\n\nensure the tests pass locally\n.", 
+            "title": "Contributing"
+        }, 
+        {
+            "location": "/development/contributing/#contributing", 
+            "text": "If you have not previously done so, please fill out and\nsubmit the https://cla.pivotal.io/sign/pivotal[Contributor License Agreement].  Please make all pull requests to the  develop  branch, and ensure the tests pass locally .", 
+            "title": "Contributing"
+        }, 
+        {
+            "location": "/reference/accept-eula/", 
+            "text": "", 
+            "title": "Accept EULA"
+        }, 
+        {
+            "location": "/reference/add-file-group/", 
+            "text": "", 
+            "title": "Add file group to release"
+        }, 
+        {
+            "location": "/reference/add-product-file/", 
+            "text": "", 
+            "title": "Add product file to release"
+        }, 
+        {
+            "location": "/reference/add-release-dependency/", 
+            "text": "", 
+            "title": "Add release dependency"
+        }, 
+        {
+            "location": "/reference/add-release-upgrade-path/", 
+            "text": "", 
+            "title": "Add release upgrade path"
+        }, 
+        {
+            "location": "/reference/add-user-group/", 
+            "text": "", 
+            "title": "Add user group to release"
+        }, 
+        {
+            "location": "/reference/add-user-group-member/", 
+            "text": "", 
+            "title": "Add user group member to group"
+        }, 
+        {
+            "location": "/reference/create-dependency-specifier/", 
+            "text": "", 
+            "title": "Create dependency specifier"
+        }, 
+        {
+            "location": "/reference/create-file-group/", 
+            "text": "", 
+            "title": "Create file group"
+        }, 
+        {
+            "location": "/reference/create-product-file/", 
+            "text": "", 
+            "title": "Create product file"
+        }, 
+        {
+            "location": "/reference/create-release/", 
+            "text": "", 
+            "title": "Create release"
+        }, 
+        {
+            "location": "/reference/create-user-group/", 
+            "text": "", 
+            "title": "Create user group"
+        }, 
+        {
+            "location": "/reference/curl/", 
+            "text": "", 
+            "title": "Curl an endpoint"
+        }, 
+        {
+            "location": "/reference/delete-dependency-specifier/", 
+            "text": "", 
+            "title": "Delete dependency specifier"
+        }, 
+        {
+            "location": "/reference/delete-file-group/", 
+            "text": "", 
+            "title": "Delete file group"
+        }, 
+        {
+            "location": "/reference/delete-product-file/", 
+            "text": "", 
+            "title": "Delete product file"
+        }, 
+        {
+            "location": "/reference/delete-release/", 
+            "text": "", 
+            "title": "Delete release"
+        }, 
+        {
+            "location": "/reference/delete-user-group/", 
+            "text": "", 
+            "title": "Delete user group"
+        }, 
+        {
+            "location": "/reference/dependency-specifier/", 
+            "text": "", 
+            "title": "Get dependency specifier"
+        }, 
+        {
+            "location": "/reference/dependency-specifiers/", 
+            "text": "", 
+            "title": "List dependency specifiers"
+        }, 
+        {
+            "location": "/reference/download-product-files/", 
+            "text": "", 
+            "title": "Download product files"
+        }, 
+        {
+            "location": "/reference/eula/", 
+            "text": "", 
+            "title": "Show EULA"
+        }, 
+        {
+            "location": "/reference/eulas/", 
+            "text": "", 
+            "title": "List EULAs"
+        }, 
+        {
+            "location": "/reference/file-group/", 
+            "text": "", 
+            "title": "Show file group"
+        }, 
+        {
+            "location": "/reference/file-groups/", 
+            "text": "", 
+            "title": "List file groups"
+        }, 
+        {
+            "location": "/reference/help/", 
+            "text": "", 
+            "title": "Print the help message"
+        }, 
+        {
+            "location": "/reference/login/", 
+            "text": "", 
+            "title": "Log in to Pivotal Network"
+        }, 
+        {
+            "location": "/reference/logout/", 
+            "text": "", 
+            "title": "Log out from Pivotal Network"
+        }, 
+        {
+            "location": "/reference/product/", 
+            "text": "", 
+            "title": "Show product"
+        }, 
+        {
+            "location": "/reference/product-file/", 
+            "text": "", 
+            "title": "Show product file"
+        }, 
+        {
+            "location": "/reference/product-files/", 
+            "text": "", 
+            "title": "List product files"
+        }, 
+        {
+            "location": "/reference/products/", 
+            "text": "", 
+            "title": "List products"
+        }, 
+        {
+            "location": "/reference/release/", 
+            "text": "", 
+            "title": "Show release"
+        }, 
+        {
+            "location": "/reference/release-dependencies/", 
+            "text": "", 
+            "title": "List release dependencies"
+        }, 
+        {
+            "location": "/reference/release-types/", 
+            "text": "", 
+            "title": "List release types"
+        }, 
+        {
+            "location": "/reference/release-upgrade-paths/", 
+            "text": "", 
+            "title": "List release upgrade paths"
+        }, 
+        {
+            "location": "/reference/releases/", 
+            "text": "", 
+            "title": "List releases"
+        }, 
+        {
+            "location": "/reference/remove-file-group/", 
+            "text": "", 
+            "title": "Remove file group from release"
+        }, 
+        {
+            "location": "/reference/remove-product-file/", 
+            "text": "", 
+            "title": "Remove product file from release"
+        }, 
+        {
+            "location": "/reference/remove-release-dependency/", 
+            "text": "", 
+            "title": "Remove release dependency"
+        }, 
+        {
+            "location": "/reference/remove-release-upgrade-path/", 
+            "text": "", 
+            "title": "Remove release upgrade path"
+        }, 
+        {
+            "location": "/reference/remove-user-group/", 
+            "text": "", 
+            "title": "Remove user group from release"
+        }, 
+        {
+            "location": "/reference/remove-user-group-member/", 
+            "text": "", 
+            "title": "Remove user group member from group"
+        }, 
+        {
+            "location": "/reference/update-file-group/", 
+            "text": "", 
+            "title": "Update file group"
+        }, 
+        {
+            "location": "/reference/update-product-file/", 
+            "text": "", 
+            "title": "Update product file"
+        }, 
+        {
+            "location": "/reference/update-release/", 
+            "text": "", 
+            "title": "Update release"
+        }, 
+        {
+            "location": "/reference/update-user-group/", 
+            "text": "", 
+            "title": "Update user group"
+        }, 
+        {
+            "location": "/reference/user-group/", 
+            "text": "", 
+            "title": "Show user group"
+        }, 
+        {
+            "location": "/reference/user-groups/", 
+            "text": "", 
+            "title": "List user groups"
+        }, 
+        {
+            "location": "/reference/version/", 
+            "text": "", 
+            "title": "Print the version of this CLI and exit"
+        }
+    ]
+}
