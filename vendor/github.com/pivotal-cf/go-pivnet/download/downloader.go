@@ -70,10 +70,10 @@ func (c Client) Get(
 	if err != nil {
 		return fmt.Errorf("failed to construct range: %s", err)
 	}
-	fmt.Fprintln(os.Stderr, "Length of file to downlad: %d", resp.ContentLength)
-	fmt.Fprintln(os.Stderr, "We made %d chunks:", len(ranges))
+	fmt.Fprintln(os.Stderr, fmt.Sprintf("Length of file to downlad: %d", resp.ContentLength))
+	fmt.Fprintln(os.Stderr, fmt.Sprintf("We made %d chunks:", len(ranges)))
 	for i := 0; i < len(ranges); i++ {
-		fmt.Fprintln(os.Stderr, "    %d: %d - %d", i, ranges[i].Lower, ranges[i].Upper)
+		fmt.Fprintln(os.Stderr, fmt.Sprintf("    %d: %d - %d", i, ranges[i].Lower, ranges[i].Upper))
 	}
 
 	diskStats, err := disk.Usage(location.Name())
@@ -96,7 +96,7 @@ func (c Client) Get(
 	}
 
 	var g errgroup.Group
-	for _, r := range ranges {
+	for i, r := range ranges {
 		byteRange := r
 
 		fileWriter, err := os.OpenFile(location.Name(), os.O_RDWR, fileInfo.Mode())
@@ -104,14 +104,14 @@ func (c Client) Get(
 			return fmt.Errorf("failed to open file for writing: %s", err)
 		}
 
-		//g.Go(func() error {
-			err = c.retryableRequest(contentURL, byteRange.HTTPHeader, fileWriter, byteRange.Lower, downloadLinkFetcher)
+		g.Go(func() error {
+			err = c.retryableRequest(contentURL, byteRange.HTTPHeader, fileWriter, byteRange.Lower, downloadLinkFetcher, i)
 			if err != nil {
 				return fmt.Errorf("failed during retryable request: %s", err)
 			}
 
-			//return nil
-		//})
+			return nil
+		})
 	}
 
 	if err := g.Wait(); err != nil {
@@ -121,35 +121,35 @@ func (c Client) Get(
 	return nil
 }
 
-func (c Client) retryableRequest(contentURL string, rangeHeader http.Header, fileWriter *os.File, startingByte int64, downloadLinkFetcher downloadLinkFetcher) error {
-	fmt.Fprintln(os.Stderr, "Entered retryableRequest")
+func (c Client) retryableRequest(contentURL string, rangeHeader http.Header, fileWriter *os.File, startingByte int64, downloadLinkFetcher downloadLinkFetcher, chunkIndex int) error {
+	fmt.Fprintln(os.Stderr, fmt.Sprintf("\nchunkIndex: %d - Entered retryableRequest", chunkIndex))
 	currentURL := contentURL
 	defer fileWriter.Close()
 
 	var err error
 Retry:
-	fmt.Fprintln(os.Stderr, "Began retry block")
+	fmt.Fprintln(os.Stderr, fmt.Sprintf("chunkIndex: %d - Began retry block", chunkIndex))
 	_, err = fileWriter.Seek(startingByte, 0)
 	if err != nil {
 		return fmt.Errorf("failed to seek to correct byte of output file: %s", err)
 	}
 
-	fmt.Fprintln(os.Stderr, "Making new GET request")
+	fmt.Fprintln(os.Stderr, fmt.Sprintf("chunkIndex: %d - Making new GET request", chunkIndex))
 	req, err := http.NewRequest("GET", currentURL, nil)
 	if err != nil {
 		return err
 	}
-	fmt.Fprintln(os.Stderr, "Finished making GET request")
+	fmt.Fprintln(os.Stderr, fmt.Sprintf("chunkIndex: %d - Finished making GET request", chunkIndex))
 
 	req.Header = rangeHeader
 
-	fmt.Fprintln(os.Stderr, "About to make a download request")
+	fmt.Fprintln(os.Stderr, fmt.Sprintf("chunkIndex: %d - About to make a download request", chunkIndex))
 	resp, err := c.HTTPClient.Do(req)
 
 	if err != nil {
 		if netErr, ok := err.(net.Error); ok {
 			if netErr.Temporary() {
-				fmt.Fprintln(os.Stderr, "Failed making download request, goto RETRY")
+				fmt.Fprintln(os.Stderr, fmt.Sprintf("chunkIndex: %d - Failed making download request, goto RETRY", chunkIndex))
 
 				goto Retry
 			}
@@ -160,9 +160,9 @@ Retry:
 
 	defer resp.Body.Close()
 
-	fmt.Fprintln(os.Stderr, "Succeeded making download request")
+	fmt.Fprintln(os.Stderr, fmt.Sprintf("chunkIndex: %d - Succeeded making download request", chunkIndex))
 	if resp.StatusCode == http.StatusForbidden {
-		fmt.Fprintln(os.Stderr, "Request 404'd or something, trying to make new download link")
+		fmt.Fprintln(os.Stderr, fmt.Sprintf("chunkIndex: %d - Request 404'd or something, trying to make new download link", chunkIndex))
 
 		c.Logger.Debug("received unsuccessful status code: %d", logger.Data{"statusCode": resp.StatusCode})
 		currentURL, err = downloadLinkFetcher.NewDownloadLink()
@@ -171,7 +171,7 @@ Retry:
 		}
 		c.Logger.Debug("fetched new download url: %d", logger.Data{"url": currentURL})
 
-		fmt.Fprintln(os.Stderr, "Made new download link, goto RETRY")
+		fmt.Fprintln(os.Stderr, fmt.Sprintf("chunkIndex: %d - Made new download link, goto RETRY", chunkIndex))
 
 		goto Retry
 	}
@@ -180,25 +180,25 @@ Retry:
 		return fmt.Errorf("during GET unexpected status code was returned: %d", resp.StatusCode)
 	}
 
-	fmt.Fprintln(os.Stderr, "About to read/write content")
+	fmt.Fprintln(os.Stderr, fmt.Sprintf("chunkIndex: %d - About to read/write content", chunkIndex))
 
 	var proxyReader io.Reader
 	proxyReader = c.Bar.NewProxyReader(resp.Body)
 
 	bytesWritten, err := io.Copy(fileWriter, proxyReader)
 	if err != nil {
-		fmt.Fprintln(os.Stderr, "Failed to write content")
+		fmt.Fprintln(os.Stderr, fmt.Sprintf("chunkIndex: %d - Failed to write content", chunkIndex))
 
 		if err == io.ErrUnexpectedEOF {
 			c.Bar.Add(int(-1 * bytesWritten))
-			fmt.Fprintln(os.Stderr, "Found unexpected EOF, goto RETRY")
+			fmt.Fprintln(os.Stderr, fmt.Sprintf("chunkIndex: %d - Found unexpected EOF, goto RETRY", chunkIndex))
 
 			goto Retry
 		}
 		oe, _ := err.(*net.OpError)
 		if strings.Contains(oe.Err.Error(), syscall.ECONNRESET.Error()) {
 			c.Bar.Add(int(-1 * bytesWritten))
-			fmt.Fprintln(os.Stderr, "Found some other weird error like ECONNRESET or w/e, goto RETRY")
+			fmt.Fprintln(os.Stderr, fmt.Sprintf("chunkIndex: %d - Found some other weird error like ECONNRESET or w/e, goto RETRY", chunkIndex))
 
 			goto Retry
 		}
