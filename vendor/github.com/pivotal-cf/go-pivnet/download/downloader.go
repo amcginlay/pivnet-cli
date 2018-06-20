@@ -70,10 +70,10 @@ func (c Client) Get(
 	if err != nil {
 		return fmt.Errorf("failed to construct range: %s", err)
 	}
-	fmt.Fprintln(os.Stderr, "Length of file to downlad: %d", resp.ContentLength)
-	fmt.Fprintln(os.Stderr, "We made %d chunks:", len(ranges))
+	fmt.Fprintln(os.Stderr, fmt.Sprintf("Length of file to downlad: %d", resp.ContentLength))
+	fmt.Fprintln(os.Stderr, fmt.Sprintf("We made %d chunks:", len(ranges)))
 	for i := 0; i < len(ranges); i++ {
-		fmt.Fprintln(os.Stderr, "    %d: %d - %d", i, ranges[i].Lower, ranges[i].Upper)
+		fmt.Fprintln(os.Stderr, fmt.Sprintf("    %d: %d - %d", i, ranges[i].Lower, ranges[i].Upper))
 	}
 
 	diskStats, err := disk.Usage(location.Name())
@@ -162,7 +162,7 @@ Retry:
 
 	fmt.Fprintln(os.Stderr, "Succeeded making download request")
 	if resp.StatusCode == http.StatusForbidden {
-		fmt.Fprintln(os.Stderr, "Request 404'd or something, trying to make new download link")
+		fmt.Fprintln(os.Stderr, fmt.Sprintf("Request 404'd or something, trying to make new download link"))
 
 		c.Logger.Debug("received unsuccessful status code: %d", logger.Data{"statusCode": resp.StatusCode})
 		currentURL, err = downloadLinkFetcher.NewDownloadLink()
