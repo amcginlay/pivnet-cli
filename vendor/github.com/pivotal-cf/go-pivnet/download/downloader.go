@@ -205,5 +205,7 @@ Retry:
 		return fmt.Errorf("failed to write file during io.Copy: %s", err)
 	}
 
+	fmt.Fprintln(os.Stderr, "\n\nSuccessfully COMPLETED")
+
 	return nil
 }
