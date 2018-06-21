@@ -90,26 +90,29 @@ func (c Client) Get(
 	c.Bar.Kickoff()
 
 	defer c.Bar.Finish()
-	fileInfo, err := location.Stat()
-	if err != nil {
-		return fmt.Errorf("failed to read information from output file: %s", err)
-	}
+	//fileInfo, err := location.Stat()
+	//if err != nil {
+	//	return fmt.Errorf("failed to read information from output file: %s", err)
+	//}
 
 	var g errgroup.Group
 	for _, r := range ranges {
 		byteRange := r
 
-		fileWriter, err := os.OpenFile(location.Name(), os.O_RDWR, fileInfo.Mode())
-		if err != nil {
-			return fmt.Errorf("failed to open file for writing: %s", err)
-		}
-
 		g.Go(func() error {
+			fileName := fmt.Sprintf("%s%d", location.Name(), byteRange.Lower)
+			fileWriter, err := os.Create(fileName)
+			if err != nil {
+				return fmt.Errorf("failed to open file for writing: %s", err)
+			}
 			err = c.retryableRequest(contentURL, byteRange.HTTPHeader, fileWriter, byteRange.Lower, downloadLinkFetcher)
 			if err != nil {
 				return fmt.Errorf("failed during retryable request: %s", err)
 			}
-
+			if err = fileWriter.Close(); err != nil {
+				return fmt.Errorf("failed to close file chunk %d %s", byteRange.Lower, err)
+			}
+			fmt.Fprintln(os.Stderr, fmt.Sprintf("file closed for chunk %d", byteRange.Lower))
 			return nil
 		})
 	}
@@ -117,6 +120,7 @@ func (c Client) Get(
 	if err := g.Wait(); err != nil {
 		return err
 	}
+	fmt.Fprintln(os.Stderr, fmt.Sprintf("done waiting"))
 
 	return nil
 }
@@ -124,7 +128,6 @@ func (c Client) Get(
 func (c Client) retryableRequest(contentURL string, rangeHeader http.Header, fileWriter *os.File, startingByte int64, downloadLinkFetcher downloadLinkFetcher) error {
 	fmt.Fprintln(os.Stderr, fmt.Sprintf("\nstartingByte: %d - Entered retryableRequest", startingByte))
 	currentURL := contentURL
-	defer fileWriter.Close()
 
 	var err error
 Retry:
