@@ -132,10 +132,10 @@ func (c Client) retryableRequest(contentURL string, rangeHeader http.Header, fil
 	var err error
 Retry:
 	fmt.Fprintln(os.Stderr, fmt.Sprintf("startingByte: %d - Began retry block", startingByte))
-	_, err = fileWriter.Seek(startingByte, 0)
-	if err != nil {
-		return fmt.Errorf("failed to seek to correct byte of output file: %s", err)
-	}
+	//_, err = fileWriter.Seek(startingByte, 0)
+	//if err != nil {
+	//	return fmt.Errorf("failed to seek to correct byte of output file: %s", err)
+	//}
 
 	fmt.Fprintln(os.Stderr, fmt.Sprintf("startingByte: %d - Making new GET request", startingByte))
 	req, err := http.NewRequest("GET", currentURL, nil)
