@@ -1,6 +1,7 @@
 package download
 
 import (
+	"net/http/httptrace"
 	"fmt"
 	"github.com/pivotal-cf/go-pivnet/logger"
 	"golang.org/x/sync/errgroup"
@@ -139,9 +140,6 @@ func (c Client) Get(
 	c.Bar.Kickoff()
 
 	defer c.Bar.Finish()
-	if err != nil {
-		return fmt.Errorf("failed to read information from output file: %s", err)
-	}
 
 	var g errgroup.Group
 	fileNameChunks := GetFileChunkNames(location.Name(), ranges)
@@ -181,11 +179,47 @@ func (c Client) Get(
 	return nil
 }
 
+func newTrace(startingByte int64) *httptrace.ClientTrace {
+	trace := &httptrace.ClientTrace{
+		GotConn: func(connInfo httptrace.GotConnInfo) {
+			fmt.Fprintln(os.Stderr, fmt.Sprintf("Got Conn %d", startingByte))
+		},
+		ConnectStart: func(network, addr string) {
+			fmt.Fprintln(os.Stderr, fmt.Sprintf("Dial start %d", startingByte))
+		},
+		ConnectDone: func(network, addr string, err error) {
+			fmt.Fprintln(os.Stderr, fmt.Sprintf("Dial done %d", startingByte))
+		},
+		GotFirstResponseByte: func() {
+			fmt.Fprintln(os.Stderr, fmt.Sprintf("First response byte! %d", startingByte))
+		},
+		WroteHeaders: func() {
+			fmt.Fprintln(os.Stderr, fmt.Sprintf("Wrote headers %d", startingByte))
+		},
+		WroteRequest: func(wr httptrace.WroteRequestInfo) {
+			fmt.Fprintln(os.Stderr, fmt.Sprintf("Wrote request %d", startingByte), wr)
+		},
+		PutIdleConn: func(err error) {
+			fmt.Fprintln(os.Stderr, fmt.Sprintf("PutIdleConn %d", startingByte), err)
+		},
+	}
+	return trace
+}
+
 func (c Client) retryableRequest(contentURL string, rangeHeader http.Header, fileWriter *os.File, startingByte int64, downloadLinkFetcher downloadLinkFetcher) error {
 	currentURL := contentURL
 
 	var err error
+	var response *http.Response
 Retry:
+	if response != nil {
+		fmt.Fprintln(os.Stderr, fmt.Sprintf("closing connection for byte %d", startingByte))
+		err = response.Body.Close()
+		if err != nil {
+			return fmt.Errorf("error when closing body stream for : %d - %s", startingByte, err)
+		}
+	}
+
 	_, err = fileWriter.Seek(0, 0)
 	if err != nil {
 		return fmt.Errorf("failed to seek to correct byte of output file: %s", err)
@@ -196,13 +230,16 @@ Retry:
 	if err != nil {
 		return err
 	}
+	trace := newTrace(startingByte)
+	req = req.WithContext(httptrace.WithClientTrace(req.Context(), trace))
 	fmt.Fprintln(os.Stderr, fmt.Sprintf("startingByte: %d - Finished making GET request", startingByte))
 
 	rangeHeader.Add("Referer", "https://go-pivnet.network.pivotal.io")
 	req.Header = rangeHeader
+	req.Close = true
 
 	fmt.Fprintln(os.Stderr, fmt.Sprintf("startingByte: %d - About to make a download request", startingByte))
-	resp, err := c.HTTPClient.Do(req)
+	response, err = c.HTTPClient.Do(req)
 	if err != nil {
 		if netErr, ok := err.(net.Error); ok {
 			if netErr.Temporary() {
@@ -214,12 +251,18 @@ Retry:
 		return fmt.Errorf("download request failed: %s", err)
 	}
 
-	defer resp.Body.Close()
+	defer func() {
+		fmt.Fprintln(os.Stderr, fmt.Sprintf("DEFER closing connection for byte %d", startingByte))
+		err = response.Body.Close()
+		if err != nil {
+			fmt.Fprintln(os.Stderr, fmt.Sprintf("error when closing body stream for : %d - %s", startingByte, err))
+		}
+	}()
 
 	fmt.Fprintln(os.Stderr, fmt.Sprintf("startingByte: %d - Succeeded making download request", startingByte))
-	if resp.StatusCode == http.StatusForbidden {
+	if response.StatusCode == http.StatusForbidden {
 		fmt.Fprintln(os.Stderr, fmt.Sprintf("startingByte: %d - Request 404'd or something, trying to make new download link", startingByte))
-		c.Logger.Debug("received unsuccessful status code: %d", logger.Data{"statusCode": resp.StatusCode})
+		c.Logger.Debug("received unsuccessful status code: %d", logger.Data{"statusCode": response.StatusCode})
 		currentURL, err = downloadLinkFetcher.NewDownloadLink()
 		if err != nil {
 			return err
@@ -230,13 +273,13 @@ Retry:
 		goto Retry
 	}
 
-	if resp.StatusCode != http.StatusPartialContent {
-		return fmt.Errorf("during GET unexpected status code was returned: %d", resp.StatusCode)
+	if response.StatusCode != http.StatusPartialContent {
+		return fmt.Errorf("during GET unexpected status code was returned: %d", response.StatusCode)
 	}
 
 	fmt.Fprintln(os.Stderr, fmt.Sprintf("startingByte: %d - About to read/write content", startingByte))
 	var proxyReader io.Reader
-	proxyReader = c.Bar.NewProxyReader(resp.Body)
+	proxyReader = c.Bar.NewProxyReader(response.Body)
 
 	bytesWritten, err := io.Copy(fileWriter, proxyReader)
 	if err != nil {
