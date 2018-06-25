@@ -78,6 +78,7 @@ func NewClient(
 				InsecureSkipVerify: config.SkipSSLValidation,
 			},
 			Proxy: http.ProxyFromEnvironment,
+			DisableKeepAlives: true,
 		},
 	}
 
