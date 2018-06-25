@@ -12,6 +12,8 @@ import (
 	"strings"
 	"syscall"
 	"github.com/shirou/gopsutil/disk"
+	"github.com/cavaliercoder/grab"
+	"time"
 )
 
 //go:generate counterfeiter -o ./fakes/ranger.go --fake-name Ranger . ranger
@@ -143,26 +145,15 @@ func (c Client) Get(
 
 	var g errgroup.Group
 	fileNameChunks := GetFileChunkNames(location.Name(), ranges)
+	requests, err := GetRequests(contentURL, fileNameChunks, ranges)
 
-	for i, r := range ranges {
-		byteRange := r
-		fileName := fileNameChunks[i]
-
-		g.Go(func() error {
-			fileWriter, err := os.Create(fileName)
-
-			if err != nil {
-				return fmt.Errorf("failed to open file for writing: %s %s", err, fileName)
-			}
-			defer fileWriter.Close()
-			err = c.retryableRequest(contentURL, byteRange.HTTPHeader, fileWriter, byteRange.Lower, downloadLinkFetcher)
-			if err != nil {
-				return fmt.Errorf("failed during retryable request: %s", err)
-			}
-
-			return nil
-		})
+	if err != nil {
+		return fmt.Errorf("could not create request: %s", err)
 	}
+
+	client := grab.NewClient()
+	responseChannel := client.DoBatch(-1, requests...)
+	waitForComplete(c.Bar, responseChannel, len(requests))
 
 	if err := g.Wait(); err != nil {
 		return fmt.Errorf("download failed: %s", err)
@@ -179,6 +170,21 @@ func (c Client) Get(
 	}
 
 	return nil
+}
+
+func GetRequests(contentURL string, fileNameChunks []string, ranges []Range) ([]*grab.Request, error) {
+	var requests []*grab.Request
+
+	for i, r := range ranges {
+		request, err := grab.NewRequest(fileNameChunks[i], contentURL)
+		if err != nil {
+			return nil, err
+		}
+		request.HTTPRequest.Header = r.HTTPHeader
+		request.HTTPRequest.Header.Add("Referer", "https://go-pivnet.network.pivotal.io")
+		requests = append(requests, request)
+	}
+	return requests, nil
 }
 
 func newTrace(logger logger.Logger, startingByte int64) *httptrace.ClientTrace {
@@ -207,6 +213,65 @@ func newTrace(logger logger.Logger, startingByte int64) *httptrace.ClientTrace {
 	}
 	return trace
 }
+
+func waitForComplete(progressBar bar, respch <- chan *grab.Response, responseSize int) {
+	responses := make([]*grab.Response, 0, responseSize)
+	t := time.NewTicker(500 * time.Millisecond)
+	defer t.Stop()
+	for {
+		select {
+		case resp := <-respch:
+			if resp != nil {
+				// a new response has been received and has started downloading
+				responses = append(responses, resp)
+			} else {
+				// channel is closed - all downloads are complete
+				progressBar.Finish()
+				return
+			}
+
+		case <-t.C:
+			// update UI every 200ms
+			updateUI(responses)
+		}
+	}
+}
+
+func updateUI(responses []*grab.Response) {
+	fmt.Println("***************\n\n\n\n\n********************")
+	// print newly completed downloads
+	for i, resp := range responses {
+		if resp != nil && resp.IsComplete() {
+			if resp.Err() != nil {
+				fmt.Fprintf(os.Stderr, "Error downloading %s: %v\n",
+					resp.Request.URL(),
+					resp.Err())
+			} else {
+				fmt.Printf("Finished %s %d / %d bytes (%d%%)\n",
+					resp.Filename,
+					resp.BytesComplete(),
+					resp.Size,
+					int(100*resp.Progress()))
+			}
+			responses[i] = nil
+		}
+	}
+
+	// print progress for incomplete downloads
+	for _, resp := range responses {
+		if resp != nil {
+			fmt.Printf("Downloading %s %d / %d bytes (%d%%) - %.02fKBp/s ETA: %ds \033[K\n",
+				resp.Filename,
+				resp.BytesComplete(),
+				resp.Size,
+				int(100*resp.Progress()),
+				resp.BytesPerSecond()/1024,
+				int64(resp.ETA().Sub(time.Now()).Seconds()))
+		}
+	}
+}
+
+
 
 func (c Client) retryableRequest(contentURL string, rangeHeader http.Header, fileWriter *os.File, startingByte int64, downloadLinkFetcher downloadLinkFetcher) error {
 	currentURL := contentURL
