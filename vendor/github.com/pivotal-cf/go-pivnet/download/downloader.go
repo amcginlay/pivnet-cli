@@ -137,12 +137,6 @@ func (c Client) Get(
 		return fmt.Errorf("file is too big to fit on this drive")
 	}
 
-	c.Bar.SetOutput(progressWriter)
-	c.Bar.SetTotal(resp.ContentLength)
-	c.Bar.Kickoff()
-
-	defer c.Bar.Finish()
-
 	var g errgroup.Group
 	fileNameChunks := GetFileChunkNames(location.Name(), ranges)
 	requests, err := GetRequests(contentURL, fileNameChunks, ranges)
@@ -153,11 +147,18 @@ func (c Client) Get(
 
 	client := grab.NewClient()
 	responseChannel := client.DoBatch(-1, requests...)
-	waitForComplete(c.Bar, responseChannel, len(requests))
 
+	fmt.Println("waitForComplete")
+	if err := waitForComplete(responseChannel, len(requests)); err != nil {
+		return fmt.Errorf("download failed: %s", err)
+	}
+	fmt.Println("waitForComplete - done")
+
+	fmt.Println("g.Wait start")
 	if err := g.Wait(); err != nil {
 		return fmt.Errorf("download failed: %s", err)
 	}
+	fmt.Println("g.Wait finish")
 
 	c.Logger.Debug(fmt.Sprintf("assembling chunks"))
 	if err := CombineFileChunks(location, fileNameChunks); err != nil {
@@ -214,10 +215,23 @@ func newTrace(logger logger.Logger, startingByte int64) *httptrace.ClientTrace {
 	return trace
 }
 
-func waitForComplete(progressBar bar, respch <- chan *grab.Response, responseSize int) {
+func waitForComplete(respch <-chan *grab.Response, responseSize int) error{
+	const timeoutDuration = 5 * time.Second
+	stalledDownloadChannel := make(chan(*grab.Response))
 	responses := make([]*grab.Response, 0, responseSize)
 	t := time.NewTicker(500 * time.Millisecond)
+	stalledDownloadTimer := time.AfterFunc(timeoutDuration, func() {
+		for _, response := range responses {
+			fmt.Println("checing for stalled")
+			if !response.IsComplete() && response.BytesPerSecond() == 0 {
+				stalledDownloadChannel <- response
+			}
+		}
+	})
+
 	defer t.Stop()
+	defer stalledDownloadTimer.Stop()
+
 	for {
 		select {
 		case resp := <-respch:
@@ -226,13 +240,23 @@ func waitForComplete(progressBar bar, respch <- chan *grab.Response, responseSiz
 				responses = append(responses, resp)
 			} else {
 				// channel is closed - all downloads are complete
-				progressBar.Finish()
-				return
+				return nil
 			}
 
 		case <-t.C:
 			// update UI every 200ms
 			updateUI(responses)
+			for _, response := range responses {
+				if response.BytesPerSecond() > 0 {
+					stalledDownloadTimer.Reset(timeoutDuration)
+				} else {
+					//everything is ok
+				}
+			}
+
+		case stalledRequest := <-stalledDownloadChannel:
+			close(stalledRequest.Done)
+			return fmt.Errorf("a download timed out for chunk: %s", stalledRequest.Filename)
 		}
 	}
 }
