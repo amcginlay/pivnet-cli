@@ -223,7 +223,7 @@ func waitForComplete(respch <-chan *grab.Response, responseSize int) error{
 	stalledDownloadTimer := time.AfterFunc(timeoutDuration, func() {
 		for _, response := range responses {
 			fmt.Println("checing for stalled")
-			if !response.IsComplete() && response.BytesPerSecond() == 0 {
+			if response != nil && !response.IsComplete() && response.BytesPerSecond() == 0 {
 				stalledDownloadChannel <- response
 			}
 		}
@@ -247,7 +247,7 @@ func waitForComplete(respch <-chan *grab.Response, responseSize int) error{
 			// update UI every 200ms
 			updateUI(responses)
 			for _, response := range responses {
-				if response.BytesPerSecond() > 0 {
+				if response != nil && response.BytesPerSecond() > 0 {
 					stalledDownloadTimer.Reset(timeoutDuration)
 				} else {
 					//everything is ok
