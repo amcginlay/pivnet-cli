@@ -1313,6 +1313,7 @@ var _ = Describe("PivnetClient - product files", func() {
 					),
 				)
 
+				failureCount := 0
 				cloudfront.RouteToHandler("GET", "/download", ghttp.CombineHandlers(
 					http.HandlerFunc(func(w http.ResponseWriter, req *http.Request) {
 						ex := regexp.MustCompile(`bytes=(\d+)-(\d+)`)
@@ -1328,7 +1329,8 @@ var _ = Describe("PivnetClient - product files", func() {
 							Fail(err.Error())
 						}
 
-						if start == 1 && end == 1 {
+						if failureCount == 0 {
+							failureCount++
 							w.WriteHeader(http.StatusForbidden)
 						} else {
 							w.WriteHeader(http.StatusPartialContent)
@@ -1339,7 +1341,7 @@ var _ = Describe("PivnetClient - product files", func() {
 				))
 			})
 
-			It("gets a new cloudfront link from pivnet and retries the download", func() {
+			It("retries the download", func() {
 				tmpFile, err := ioutil.TempFile("", "")
 				Expect(err).NotTo(HaveOccurred())
 

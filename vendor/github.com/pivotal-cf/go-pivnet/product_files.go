@@ -8,7 +8,6 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/pivotal-cf/go-pivnet/download"
 	"github.com/pivotal-cf/go-pivnet/logger"
 )
 
@@ -483,8 +482,6 @@ func (p ProductFilesService) DownloadForRelease(
 	p.client.logger.Debug("Downloading file", logger.Data{"downloadLink": downloadLink})
 
 	productFileDownloadLinkFetcher := NewProductFileLinkFetcher(downloadLink, p.client)
-
-	p.client.downloader.Bar = download.NewBar()
 
 	err = p.client.downloader.Get(
 		location,
