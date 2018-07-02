@@ -129,9 +129,9 @@ func updateUI(responses []IProxyResponse) {
 	for _, resp := range responses {
 		if resp != nil {
 			fmt.Printf("Downloading %s %d / %d bytes (%d%%) - %.02fKBp/s ETA: %ds \033[K\n",
-				resp.Filename,
+				resp.Filename(),
 				resp.BytesComplete(),
-				resp.Size,
+				resp.Size(),
 				int(100*resp.Progress()),
 				resp.BytesPerSecond()/1024,
 				int64(resp.ETA().Sub(time.Now()).Seconds()))
