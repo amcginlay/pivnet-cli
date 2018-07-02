@@ -40,7 +40,7 @@ func MapToErrorDownload(downloadResponses []IProxyResponse) ErrorDownload {
 	var errstrings []string
 
 	for _, downloadResponse := range downloadResponses {
-		if downloadResponse.Err() != nil {
+		if downloadResponse != nil && downloadResponse.Err() != nil {
 			failedDownloadResponses = append(failedDownloadResponses, downloadResponse.Request())
 			errstrings = append(errstrings, downloadResponse.Err().Error())
 		}
