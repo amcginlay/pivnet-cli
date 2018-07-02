@@ -20,7 +20,6 @@ import (
 	"os"
 	"github.com/pivotal-cf/go-pivnet/logger"
 	"github.com/pivotal-cf/go-pivnet/logger/loggerfakes"
-	"github.com/cavaliercoder/grab"
 )
 
 type EOFReader struct{}
@@ -256,7 +255,7 @@ var _ = Describe("Downloader", func() {
 				}
 
 				batchDownloaderCallCount := -1
-				batchDownloader.DoStub = func(requests ...*grab.Request) download.ErrorDownload {
+				batchDownloader.DoStub = func(requests ...download.IProxyRequest) download.ErrorDownload {
 						errorDownloads := []download.ErrorDownload{{
 							CanRetry: true,
 							Error: fmt.Errorf("expected error"),
@@ -415,7 +414,7 @@ var _ = Describe("Downloader", func() {
 						Logger:         logger,
 					}
 
-					batchDownloader.DoStub = func(requests ...*grab.Request) download.ErrorDownload {
+					batchDownloader.DoStub = func(requests ...download.IProxyRequest) download.ErrorDownload {
 						return download.ErrorDownload{
 							CanRetry: false,
 							Error: fmt.Errorf("expected error"),

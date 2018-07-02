@@ -4,15 +4,14 @@ package fakes
 import (
 	"sync"
 
-	"github.com/cavaliercoder/grab"
 	"github.com/pivotal-cf/go-pivnet/download"
 )
 
 type BatchDownloader struct {
-	DoStub        func(...*grab.Request) download.ErrorDownload
+	DoStub        func(...download.IProxyRequest) download.ErrorDownload
 	doMutex       sync.RWMutex
 	doArgsForCall []struct {
-		arg1 []*grab.Request
+		arg1 []download.IProxyRequest
 	}
 	doReturns struct {
 		result1 download.ErrorDownload
@@ -24,11 +23,11 @@ type BatchDownloader struct {
 	invocationsMutex sync.RWMutex
 }
 
-func (fake *BatchDownloader) Do(arg1 ...*grab.Request) download.ErrorDownload {
+func (fake *BatchDownloader) Do(arg1 ...download.IProxyRequest) download.ErrorDownload {
 	fake.doMutex.Lock()
 	ret, specificReturn := fake.doReturnsOnCall[len(fake.doArgsForCall)]
 	fake.doArgsForCall = append(fake.doArgsForCall, struct {
-		arg1 []*grab.Request
+		arg1 []download.IProxyRequest
 	}{arg1})
 	fake.recordInvocation("Do", []interface{}{arg1})
 	fake.doMutex.Unlock()
@@ -47,7 +46,7 @@ func (fake *BatchDownloader) DoCallCount() int {
 	return len(fake.doArgsForCall)
 }
 
-func (fake *BatchDownloader) DoArgsForCall(i int) []*grab.Request {
+func (fake *BatchDownloader) DoArgsForCall(i int) []download.IProxyRequest {
 	fake.doMutex.RLock()
 	defer fake.doMutex.RUnlock()
 	return fake.doArgsForCall[i].arg1
