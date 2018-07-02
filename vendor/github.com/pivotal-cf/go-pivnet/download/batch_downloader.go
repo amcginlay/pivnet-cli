@@ -116,9 +116,9 @@ func updateUI(responses []IProxyResponse) {
 					resp.Err())
 			} else {
 				fmt.Printf("Finished %s %d / %d bytes (%d%%)\n",
-					resp.Filename,
+					resp.Filename(),
 					resp.BytesComplete(),
-					resp.Size,
+					resp.Size(),
 					int(100*resp.Progress()))
 			}
 			responses[i] = nil
