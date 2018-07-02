@@ -1,11 +1,12 @@
 package download
 
 import (
-	"github.com/cavaliercoder/grab"
 	"fmt"
 	"time"
 	"os"
 	"strings"
+	"github.com/cavaliercoder/grab"
+	"net/url"
 )
 
 type BatchDownloader struct {
@@ -15,7 +16,7 @@ type BatchDownloader struct {
 type ErrorDownload struct {
 	CanRetry bool
 	Error error
-	Requests []*grab.Request
+	Requests []*ProxyRequest
 }
 
 func NewBatchDownloader() *BatchDownloader {
@@ -23,19 +24,116 @@ func NewBatchDownloader() *BatchDownloader {
 }
 
 
-func (c *BatchDownloader) Do (requests ...*grab.Request) ErrorDownload {
+func (c *BatchDownloader) DoOLD (requests ...*grab.Request) ErrorDownload {
 	responseChannel := c.DownloadClient.DoBatch(-1, requests...)
-	return WaitForComplete(responseChannel)
+	proxyResponseChannel := NewChannelProxy(responseChannel)
+	return WaitForComplete(proxyResponseChannel.Channel)
 }
 
-func MapToErrorDownload(downloadResponses []TestableGrabResponse) ErrorDownload {
-	var failedDownloadResponses []*grab.Request
+func (c *BatchDownloader) Do (requests ...*ProxyRequest) ErrorDownload {
+	var realGrabRequests []*grab.Request
+	for _, request := range requests {
+		realGrabRequests = append(realGrabRequests, request.Wrapped)
+	}
+
+	responseChannel := c.DownloadClient.DoBatch(-1, realGrabRequests...)
+	proxyResponseChannel := NewChannelProxy(responseChannel)
+	return WaitForComplete(proxyResponseChannel.Channel)
+}
+
+type ProxyRequest struct {
+	Wrapped *grab.Request
+}
+
+func NewProxyRequest(request *grab.Request) *ProxyRequest {
+	return &ProxyRequest{
+		Wrapped: request,
+	}
+}
+
+func (p ProxyRequest) URL() *url.URL {
+	return p.Wrapped.URL()
+}
+
+type ProxyResponse struct {
+	Wrapped *grab.Response
+	Filename string
+	Size int64
+	Request *ProxyRequest
+}
+
+func NewProxyResponse(response *grab.Response) *ProxyResponse {
+	return &ProxyResponse {
+		Wrapped: response,
+		Filename: response.Filename,
+		Size: response.Size,
+		Request: NewProxyRequest(response.Request),
+	}
+}
+
+func (p ProxyResponse) Err() error {
+	return p.Wrapped.Err()
+}
+
+func (p ProxyResponse) IsComplete() bool {
+	return p.Wrapped.IsComplete()
+}
+
+func (p ProxyResponse) BytesPerSecond() float64 {
+	return p.Wrapped.BytesPerSecond()
+}
+
+func (p ProxyResponse) BytesComplete() int64 {
+	return p.Wrapped.BytesComplete()
+}
+
+func (p ProxyResponse) Progress() float64 {
+	return p.Wrapped.Progress()
+}
+
+func (p ProxyResponse) Done() {
+	close(p.Wrapped.Done)
+}
+
+func (p ProxyResponse) ETA() time.Time {
+	return p.Wrapped.ETA()
+}
+
+type ChannelProxy struct {
+	Wrapped <-chan *grab.Response
+	Channel <-chan *ProxyResponse
+}
+
+func NewChannelProxy(responseChannel <-chan *grab.Response) *ChannelProxy {
+	channel := make(chan *ProxyResponse)
+	go func() {
+		for {
+			select {
+				case response := <-responseChannel:
+					if response == nil {
+						close(channel)
+						break
+					} else {
+						channel <- NewProxyResponse(response)
+					}
+
+			}
+		}
+	}()
+	return &ChannelProxy {
+		Wrapped: responseChannel,
+		Channel: channel,
+	}
+}
+
+func MapToErrorDownload(downloadResponses []*ProxyResponse) ErrorDownload {
+	var failedDownloadResponses []*ProxyRequest
 	var errstrings []string
 
 	for _, downloadResponse := range downloadResponses {
-		if downloadResponse.Error != nil {
+		if downloadResponse.Err() != nil {
 			failedDownloadResponses = append(failedDownloadResponses, downloadResponse.Request)
-			errstrings = append(errstrings, downloadResponse.Error.Error())
+			errstrings = append(errstrings, downloadResponse.Err().Error())
 		}
 	}
 
@@ -53,26 +151,10 @@ func MapToErrorDownload(downloadResponses []TestableGrabResponse) ErrorDownload 
 	}
 }
 
-type TestableGrabResponse struct {
-	Error error
-	Request *grab.Request
-}
-
-func createTestableGrabResponses(responses []*grab.Response) []TestableGrabResponse {
-	var testableResponses []TestableGrabResponse
-	for _, response := range responses {
-		testableResponses = append(testableResponses, TestableGrabResponse{
-			Error: response.Err(),
-			Request: response.Request,
-		})
-	}
-	return testableResponses
-}
-
-func WaitForComplete(downloadBatchChannel <-chan *grab.Response) ErrorDownload{
+func WaitForComplete(channelProxy <-chan *ProxyResponse) ErrorDownload{
 	const timeoutDuration = 5 * time.Second
-	stalledDownloadChannel := make(chan(*grab.Response))
-	var downloadResponses []*grab.Response
+	stalledDownloadChannel := make(chan *ProxyResponse)
+	var downloadResponses []*ProxyResponse
 	t := time.NewTicker(500 * time.Millisecond)
 	stalledDownloadTimer := time.AfterFunc(timeoutDuration, func() {
 		for _, response := range downloadResponses {
@@ -87,36 +169,35 @@ func WaitForComplete(downloadBatchChannel <-chan *grab.Response) ErrorDownload{
 
 	for {
 		select {
-		case downloadResponse := <-downloadBatchChannel:
+		case downloadResponse := <-channelProxy:
 			if downloadResponse != nil {
 				// a new response has been received and has started downloading
 				downloadResponses = append(downloadResponses, downloadResponse)
 			} else {
-				return MapToErrorDownload(createTestableGrabResponses(downloadResponses))
+				return MapToErrorDownload(downloadResponses)
 			}
 
 		case <-t.C:
-			// update UI every 200ms
 			updateUI(downloadResponses)
 			for _, response := range downloadResponses {
 				if response != nil && response.BytesPerSecond() > 0 {
 					stalledDownloadTimer.Reset(timeoutDuration)
 				} else {
-					//everything is ok
+					//a download has stalled
 				}
 			}
 
-		case stalledRequest := <-stalledDownloadChannel:
-			close(stalledRequest.Done)  //stop download
+		case stalledResponse := <-stalledDownloadChannel:
+			stalledResponse.Done()  //stop download
 			return ErrorDownload {
 				CanRetry: false,
-				Error: fmt.Errorf("a download timed out for chunk: %s", stalledRequest.Filename),
+				Error: fmt.Errorf("a download timed out for chunk: %s", stalledResponse.Filename),
 			}
 		}
 	}
 }
 
-func updateUI(responses []*grab.Response) {
+func updateUI(responses []*ProxyResponse) {
 	fmt.Println("***************\n\n\n\n\n********************")
 	// print newly completed downloads
 	for i, resp := range responses {

@@ -22,7 +22,8 @@ type httpClient interface {
 
 //go:generate counterfeiter -o ./fakes/batch_downloader.go --fake-name BatchDownloader . batchDownloader
 type batchDownloader interface {
-	Do (...*grab.Request) ErrorDownload
+	Do (...*ProxyRequest) ErrorDownload
+	DoOLD (...*grab.Request) ErrorDownload
 }
 
 type downloadLinkFetcher interface {
@@ -167,7 +168,7 @@ func GetRequests(contentURL string, fileNameChunks []string, ranges []Range) ([]
 }
 
 func performDownload(batchDownloader batchDownloader, requests ...*grab.Request) error {
-	errorDownload := batchDownloader.Do(requests...)
+	errorDownload := batchDownloader.DoOLD(requests...)
 	if errorDownload.Error != nil {
 		if errorDownload.CanRetry { //try one more time
 			errorDownload = batchDownloader.Do(errorDownload.Requests...)
