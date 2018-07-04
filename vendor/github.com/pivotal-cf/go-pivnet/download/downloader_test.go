@@ -257,12 +257,12 @@ var _ = Describe("Downloader", func() {
 				batchDownloaderCallCount := -1
 				batchDownloader.DoStub = func(requests ...download.IProxyRequest) download.ErrorDownload {
 						errorDownloads := []download.ErrorDownload{{
-							CanRetry: true,
-							Error: fmt.Errorf("expected error"),
+							ShouldRetry: true,
+							Error:       fmt.Errorf("expected error"),
 						},
 						{
-							CanRetry: false,
-							Error: nil,
+							ShouldRetry: false,
+							Error:       nil,
 						},
 					}
 					batchDownloaderCallCount++
@@ -416,8 +416,8 @@ var _ = Describe("Downloader", func() {
 
 					batchDownloader.DoStub = func(requests ...download.IProxyRequest) download.ErrorDownload {
 						return download.ErrorDownload{
-							CanRetry: false,
-							Error: fmt.Errorf("expected error"),
+							ShouldRetry: false,
+							Error:       fmt.Errorf("expected error"),
 						}
 					}
 

@@ -13,9 +13,9 @@ type BatchDownloader struct {
 }
 
 type ErrorDownload struct {
-	CanRetry bool
-	Error error
-	Requests []IProxyRequest
+	ShouldRetry bool
+	Error       error
+	Requests    []IProxyRequest
 }
 
 func NewBatchDownloader() *BatchDownloader {
@@ -38,13 +38,14 @@ func (c *BatchDownloader) Do (requests ...IProxyRequest) ErrorDownload {
 func MapToErrorDownload(downloadResponses []IProxyResponse) ErrorDownload {
 	var failedDownloadResponses []IProxyRequest
 	var errstrings []string
-	canRetry := false
+	shouldRetry := false
 
 	for _, downloadResponse := range downloadResponses {
+		fmt.Println(fmt.Sprintf("during for loop: %s", downloadResponse.DidTimeout()))
 		if downloadResponse != nil && downloadResponse.Err() != nil {
 			failedDownloadResponses = append(failedDownloadResponses, downloadResponse.Request())
 			errstrings = append(errstrings, downloadResponse.Err().Error())
-			canRetry = downloadResponse.DidTimeout()
+			shouldRetry = shouldRetry || downloadResponse.DidTimeout()
 		}
 	}
 
@@ -55,10 +56,13 @@ func MapToErrorDownload(downloadResponses []IProxyResponse) ErrorDownload {
 		error = nil
 	}
 
+	fmt.Println(fmt.Sprintf("failedDownloadResponses count: %d", len(failedDownloadResponses)))
+	fmt.Println(fmt.Sprintf("shouldRetry: %s", shouldRetry))
+
 	return ErrorDownload{
-		Requests: failedDownloadResponses,
-		Error: error,
-		CanRetry: canRetry,
+		Requests:    failedDownloadResponses,
+		Error:       error,
+		ShouldRetry: shouldRetry,
 	}
 }
 
@@ -84,6 +88,7 @@ func WaitForComplete(channelProxy <-chan IProxyResponse, timeoutDuration time.Du
 				// a new response has been received and has started downloading
 				downloadResponses = append(downloadResponses, downloadResponse)
 			} else {
+				fmt.Println("mapping to error download")
 				return MapToErrorDownload(downloadResponses)
 			}
 
@@ -100,6 +105,7 @@ func WaitForComplete(channelProxy <-chan IProxyResponse, timeoutDuration time.Du
 		case stalledResponse := <-stalledDownloadChannel:
 			stalledResponse.Done()  //stop download
 			stalledResponse.SetDidTimeout()
+			fmt.Println(fmt.Sprintf("Download has stalled: %s ; %s", stalledResponse.Filename(), stalledResponse.DidTimeout()))
 		}
 	}
 }

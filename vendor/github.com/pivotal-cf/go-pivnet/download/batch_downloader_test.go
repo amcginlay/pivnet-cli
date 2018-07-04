@@ -38,7 +38,7 @@ var _ = Describe("WaitForComplete", func() {
 		})
 
 		It("cannot retry", func() {
-			Expect(result.CanRetry).To(BeFalse())
+			Expect(result.ShouldRetry).To(BeFalse())
 		})
 	})
 
@@ -63,7 +63,7 @@ var _ = Describe("WaitForComplete", func() {
 		})
 
 		It("cannot retry", func() {
-			Expect(result.CanRetry).To(BeFalse())
+			Expect(result.ShouldRetry).To(BeFalse())
 		})
 	})
 
@@ -111,7 +111,7 @@ var _ = Describe("WaitForComplete", func() {
 		})
 
 		It("can retry", func() {
-			Expect(result.CanRetry).To(BeTrue())
+			Expect(result.ShouldRetry).To(BeTrue())
 		})
 	})
 })

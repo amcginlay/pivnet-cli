@@ -82,7 +82,7 @@ func (p ProxyResponse) DidTimeout() bool {
 	return p.didTimeout
 }
 
-func (p ProxyResponse) SetDidTimeout() {
+func (p *ProxyResponse) SetDidTimeout() {
 	p.didTimeout = true
 }
 
