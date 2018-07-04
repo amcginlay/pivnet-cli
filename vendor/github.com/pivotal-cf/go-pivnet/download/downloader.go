@@ -133,7 +133,7 @@ func (c Client) Get(
 		return fmt.Errorf("could not create request: %s", err)
 	}
 
-	err = performDownload(c.BatchDownloader, requests...)
+	err = performDownload(c.BatchDownloader, 2, requests...)
 	if err != nil {
 		return fmt.Errorf("download failed: %s", err)
 	}
@@ -167,17 +167,17 @@ func GetRequests(contentURL string, fileNameChunks []string, ranges []Range) ([]
 	return requests, nil
 }
 
-func performDownload(batchDownloader batchDownloader, requests ...IProxyRequest) error {
-	errorDownload := batchDownloader.Do(requests...)
-	if errorDownload.Error != nil {
-		if errorDownload.CanRetry { //try one more time
-			errorDownload = batchDownloader.Do(errorDownload.Requests...)
-			if errorDownload.Error != nil {
-				fmt.Errorf("retry failed: %s", errorDownload.Error)
-			}
-		} else {
-			return fmt.Errorf("first failed: %s", errorDownload.Error)
+func performDownload(batchDownloader batchDownloader, numTries int, requests ...IProxyRequest) error {
+	var errorDownload ErrorDownload
+	for i := numTries; i > 0; i-- {
+		errorDownload = batchDownloader.Do(requests...)
+
+		if errorDownload.Error == nil {
+			return nil
+		} else if !errorDownload.CanRetry {
+			fmt.Errorf("Attempting retry: %d", len(errorDownload.Requests))
+			break
 		}
 	}
-	return nil
+	return fmt.Errorf("Error: %s", errorDownload.Error)
 }

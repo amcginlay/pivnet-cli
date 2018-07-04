@@ -63,7 +63,7 @@ var _ = Describe("WaitForComplete", func() {
 		})
 
 		It("cannot retry", func() {
-			Expect(result.CanRetry).To(BeTrue())
+			Expect(result.CanRetry).To(BeFalse())
 		})
 	})
 
@@ -89,7 +89,14 @@ var _ = Describe("WaitForComplete", func() {
 				close(channel)
 			}
 			fakeResponse.ErrStub = func() error {
-				return nil
+				return fmt.Errorf("a download timed out for chunk: some/file/name.txt")
+			}
+			hasTimedOut := false
+			fakeResponse.SetDidTimeoutStub = func() {
+				hasTimedOut = true
+			}
+			fakeResponse.DidTimeoutStub = func() bool {
+				return hasTimedOut
 			}
 
 			go func() {
@@ -103,8 +110,8 @@ var _ = Describe("WaitForComplete", func() {
 			Expect(result.Error).To(MatchError(fmt.Sprintf("a download timed out for chunk: %s", fakeResponse.Filename())))
 		})
 
-		It("cannot retry", func() {
-			Expect(result.CanRetry).To(BeFalse())
+		It("can retry", func() {
+			Expect(result.CanRetry).To(BeTrue())
 		})
 	})
 })

@@ -38,11 +38,13 @@ func (c *BatchDownloader) Do (requests ...IProxyRequest) ErrorDownload {
 func MapToErrorDownload(downloadResponses []IProxyResponse) ErrorDownload {
 	var failedDownloadResponses []IProxyRequest
 	var errstrings []string
+	canRetry := false
 
 	for _, downloadResponse := range downloadResponses {
 		if downloadResponse != nil && downloadResponse.Err() != nil {
 			failedDownloadResponses = append(failedDownloadResponses, downloadResponse.Request())
 			errstrings = append(errstrings, downloadResponse.Err().Error())
+			canRetry = downloadResponse.DidTimeout()
 		}
 	}
 
@@ -56,14 +58,14 @@ func MapToErrorDownload(downloadResponses []IProxyResponse) ErrorDownload {
 	return ErrorDownload{
 		Requests: failedDownloadResponses,
 		Error: error,
-		CanRetry: error != nil,
+		CanRetry: canRetry,
 	}
 }
 
 func WaitForComplete(channelProxy <-chan IProxyResponse, timeoutDuration time.Duration) ErrorDownload{
 	stalledDownloadChannel := make(chan IProxyResponse)
 	var downloadResponses []IProxyResponse
-	t := time.NewTicker(500 * time.Millisecond)
+	ticker := time.NewTicker(500 * time.Millisecond)
 	stalledDownloadTimer := time.AfterFunc(timeoutDuration, func() {
 		for _, response := range downloadResponses {
 			if response != nil && !response.IsComplete() && response.BytesPerSecond() == 0 {
@@ -72,7 +74,7 @@ func WaitForComplete(channelProxy <-chan IProxyResponse, timeoutDuration time.Du
 		}
 	})
 
-	defer t.Stop()
+	defer ticker.Stop()
 	defer stalledDownloadTimer.Stop()
 
 	for {
@@ -85,22 +87,19 @@ func WaitForComplete(channelProxy <-chan IProxyResponse, timeoutDuration time.Du
 				return MapToErrorDownload(downloadResponses)
 			}
 
-		case <-t.C:
+		case <-ticker.C:
 			updateUI(downloadResponses)
 			for _, response := range downloadResponses {
 				if response != nil && response.BytesPerSecond() > 0 {
 					stalledDownloadTimer.Reset(timeoutDuration)
 				} else {
-					//a download has stalled
+					//a download is stalling
 				}
 			}
 
 		case stalledResponse := <-stalledDownloadChannel:
 			stalledResponse.Done()  //stop download
-			return ErrorDownload {
-				CanRetry: false,
-				Error: fmt.Errorf("a download timed out for chunk: %s", stalledResponse.Filename()),
-			}
+			stalledResponse.SetDidTimeout()
 		}
 	}
 }

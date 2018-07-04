@@ -422,7 +422,7 @@ var _ = Describe("Downloader", func() {
 					}
 
 					err = downloader.Get(tmpFile, downloadLinkFetcher, GinkgoWriter)
-					Expect(err).To(MatchError("download failed: first failed: expected error"))
+					Expect(err).To(MatchError("download failed: Error: expected error"))
 				})
 			})
 

@@ -4,6 +4,7 @@ import (
 	"time"
 	"github.com/cavaliercoder/grab"
 	"net/url"
+	"fmt"
 )
 
 //go:generate counterfeiter -o ./fakes/proxy_request.go --fake-name ProxyRequest . IProxyRequest
@@ -35,6 +36,8 @@ type IProxyResponse interface {
 	Filename() string
 	Size() int64
 	Request() IProxyRequest
+	DidTimeout() bool
+	SetDidTimeout()
 
 	Err() error
 	IsComplete() bool
@@ -50,6 +53,7 @@ type ProxyResponse struct {
 	filename string
 	size int64
 	request IProxyRequest
+	didTimeout bool
 }
 
 func NewProxyResponse(response *grab.Response) IProxyResponse {
@@ -58,6 +62,7 @@ func NewProxyResponse(response *grab.Response) IProxyResponse {
 		filename: response.Filename,
 		size: response.Size,
 		request: NewProxyRequest(response.Request),
+		didTimeout: false,
 	}
 }
 
@@ -69,12 +74,22 @@ func (p ProxyResponse) Size() int64 {
 	return p.size
 }
 
-
 func (p ProxyResponse) Request() IProxyRequest {
 	return p.request
 }
 
+func (p ProxyResponse) DidTimeout() bool {
+	return p.didTimeout
+}
+
+func (p ProxyResponse) SetDidTimeout() {
+	p.didTimeout = true
+}
+
 func (p ProxyResponse) Err() error {
+	if p.didTimeout {
+		return fmt.Errorf("a download timed out for chunk: %s", p.filename)
+	}
 	return p.Wrapped.Err()
 }
 
