@@ -169,9 +169,11 @@ func GetRequests(contentURL string, fileNameChunks []string, ranges []Range) ([]
 
 func performDownload(batchDownloader batchDownloader, numTries int, requests ...IProxyRequest) error {
 	var errorDownload ErrorDownload
+	var reqs = requests
+
 	for i := 0; i < numTries; i++ {
 		fmt.Println(fmt.Sprintf("Attempting download: Try %d", i))
-		errorDownload = batchDownloader.Do(requests...)
+		errorDownload = batchDownloader.Do(reqs...)
 
 		if errorDownload.Error == nil {
 			fmt.Println("error download is nil and the download was successful yay!")
@@ -180,6 +182,7 @@ func performDownload(batchDownloader batchDownloader, numTries int, requests ...
 			fmt.Println("error download cannot retry")
 			break
 		}
+		reqs = errorDownload.Requests
 	}
 	fmt.Println("outside of for loop")
 	return fmt.Errorf("Error: %s", errorDownload.Error)

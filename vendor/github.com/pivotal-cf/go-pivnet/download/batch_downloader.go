@@ -36,14 +36,23 @@ func (c *BatchDownloader) Do (requests ...IProxyRequest) ErrorDownload {
 }
 
 func MapToErrorDownload(downloadResponses []IProxyResponse) ErrorDownload {
-	var failedDownloadResponses []IProxyRequest
+	var failedDownloadRequests []IProxyRequest
 	var errstrings []string
 	shouldRetry := true
 
 	for _, downloadResponse := range downloadResponses {
-		fmt.Println(fmt.Sprintf("during for loop: %s", downloadResponse != nil && downloadResponse.DidTimeout()))
+		if downloadResponse != nil {
+			var errorText string
+			if downloadResponse.Err() == nil {
+				errorText = "no errors!"
+			} else {
+				errorText = downloadResponse.Err().Error()
+			}
+			fmt.Println(fmt.Sprintf("during for loop: DidTimeout: %t Error: %s", downloadResponse.DidTimeout(), errorText))
+		}
+
 		if downloadResponse != nil && downloadResponse.Err() != nil {
-			failedDownloadResponses = append(failedDownloadResponses, downloadResponse.Request())
+			failedDownloadRequests = append(failedDownloadRequests, downloadResponse.Request())
 			errstrings = append(errstrings, downloadResponse.Err().Error())
 			shouldRetry = shouldRetry && downloadResponse.DidTimeout()
 		}
@@ -57,11 +66,11 @@ func MapToErrorDownload(downloadResponses []IProxyResponse) ErrorDownload {
 		shouldRetry = false
 	}
 
-	fmt.Println(fmt.Sprintf("failedDownloadResponses count: %d", len(failedDownloadResponses)))
+	fmt.Println(fmt.Sprintf("failedDownloadRequests count: %d", len(failedDownloadRequests)))
 	fmt.Println(fmt.Sprintf("shouldRetry: %s", shouldRetry))
 
 	return ErrorDownload{
-		Requests:    failedDownloadResponses,
+		Requests:    failedDownloadRequests,
 		Error:       error,
 		ShouldRetry: shouldRetry,
 	}
