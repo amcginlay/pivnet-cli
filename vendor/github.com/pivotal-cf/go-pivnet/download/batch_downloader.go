@@ -41,7 +41,7 @@ func MapToErrorDownload(downloadResponses []IProxyResponse) ErrorDownload {
 	shouldRetry := true
 
 	for _, downloadResponse := range downloadResponses {
-		fmt.Println(fmt.Sprintf("during for loop: %s", downloadResponse.DidTimeout()))
+		fmt.Println(fmt.Sprintf("during for loop: %s", downloadResponse != nil && downloadResponse.DidTimeout()))
 		if downloadResponse != nil && downloadResponse.Err() != nil {
 			failedDownloadResponses = append(failedDownloadResponses, downloadResponse.Request())
 			errstrings = append(errstrings, downloadResponse.Err().Error())
