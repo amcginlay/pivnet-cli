@@ -123,7 +123,7 @@ func WaitForComplete(channelProxy <-chan IProxyResponse, timeoutDuration time.Du
 func updateUI(responses []IProxyResponse) {
 	fmt.Println("***************\n\n\n\n\n********************")
 	// print newly completed downloads
-	for i, resp := range responses {
+	for _, resp := range responses {
 		if resp != nil && resp.IsComplete() {
 			if resp.Err() != nil {
 				fmt.Fprintf(os.Stderr, "Error downloading %s: %v\n",
@@ -136,7 +136,6 @@ func updateUI(responses []IProxyResponse) {
 					resp.Size(),
 					int(100*resp.Progress()))
 			}
-			responses[i] = nil
 		}
 	}
 

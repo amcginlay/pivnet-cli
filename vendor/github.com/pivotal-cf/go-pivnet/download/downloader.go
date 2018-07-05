@@ -160,6 +160,7 @@ func GetRequests(contentURL string, fileNameChunks []string, ranges []Range) ([]
 		if err != nil {
 			return nil, err
 		}
+		request.NoResume = true //Retry will be slow and corrupt without this for some raisin
 		request.HTTPRequest.Header = r.HTTPHeader
 		request.HTTPRequest.Header.Add("Referer", "https://go-pivnet.network.pivotal.io")
 		requests = append(requests, NewProxyRequest(request))
