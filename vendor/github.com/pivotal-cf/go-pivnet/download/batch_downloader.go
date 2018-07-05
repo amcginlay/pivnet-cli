@@ -38,14 +38,14 @@ func (c *BatchDownloader) Do (requests ...IProxyRequest) ErrorDownload {
 func MapToErrorDownload(downloadResponses []IProxyResponse) ErrorDownload {
 	var failedDownloadResponses []IProxyRequest
 	var errstrings []string
-	shouldRetry := false
+	shouldRetry := true
 
 	for _, downloadResponse := range downloadResponses {
 		fmt.Println(fmt.Sprintf("during for loop: %s", downloadResponse.DidTimeout()))
 		if downloadResponse != nil && downloadResponse.Err() != nil {
 			failedDownloadResponses = append(failedDownloadResponses, downloadResponse.Request())
 			errstrings = append(errstrings, downloadResponse.Err().Error())
-			shouldRetry = shouldRetry || downloadResponse.DidTimeout()
+			shouldRetry = shouldRetry && downloadResponse.DidTimeout()
 		}
 	}
 
@@ -54,6 +54,7 @@ func MapToErrorDownload(downloadResponses []IProxyResponse) ErrorDownload {
 		error = fmt.Errorf(strings.Join(errstrings, "\n"))
 	} else {
 		error = nil
+		shouldRetry = false
 	}
 
 	fmt.Println(fmt.Sprintf("failedDownloadResponses count: %d", len(failedDownloadResponses)))

@@ -173,7 +173,7 @@ func performDownload(batchDownloader batchDownloader, numTries int, requests ...
 		fmt.Println(fmt.Sprintf("Attempting download: Try %d", i))
 		errorDownload = batchDownloader.Do(requests...)
 
-		if !errorDownload.ShouldRetry && errorDownload.Error == nil {
+		if errorDownload.Error == nil {
 			fmt.Println("error download is nil and the download was successful yay!")
 			return nil
 		} else if !errorDownload.ShouldRetry {
