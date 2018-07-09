@@ -110,7 +110,7 @@ var _ = Describe("WaitForComplete", func() {
 			Expect(result.Error).To(MatchError(fmt.Sprintf("a download timed out for chunk: %s", fakeResponse.Filename())))
 		})
 
-		It("can retry", func() {
+		It("should retry", func() {
 			Expect(result.ShouldRetry).To(BeTrue())
 		})
 	})

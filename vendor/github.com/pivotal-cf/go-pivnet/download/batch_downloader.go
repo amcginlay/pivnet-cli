@@ -77,19 +77,11 @@ func MapToErrorDownload(downloadResponses []IProxyResponse) ErrorDownload {
 }
 
 func WaitForComplete(channelProxy <-chan IProxyResponse, timeoutDuration time.Duration) ErrorDownload{
-	stalledDownloadChannel := make(chan IProxyResponse)
 	var downloadResponses []IProxyResponse
+	var downloadResponseCounters []int
 	ticker := time.NewTicker(500 * time.Millisecond)
-	stalledDownloadTimer := time.AfterFunc(timeoutDuration, func() {
-		for _, response := range downloadResponses {
-			if response != nil && !response.IsComplete() && response.BytesPerSecond() == 0 {
-				stalledDownloadChannel <- response
-			}
-		}
-	})
 
 	defer ticker.Stop()
-	defer stalledDownloadTimer.Stop()
 
 	for {
 		select {
@@ -97,6 +89,7 @@ func WaitForComplete(channelProxy <-chan IProxyResponse, timeoutDuration time.Du
 			if downloadResponse != nil {
 				// a new response has been received and has started downloading
 				downloadResponses = append(downloadResponses, downloadResponse)
+				downloadResponseCounters = append(downloadResponseCounters, 0)
 			} else {
 				fmt.Println("mapping to error download")
 				return MapToErrorDownload(downloadResponses)
@@ -104,18 +97,16 @@ func WaitForComplete(channelProxy <-chan IProxyResponse, timeoutDuration time.Du
 
 		case <-ticker.C:
 			updateUI(downloadResponses)
-			for _, response := range downloadResponses {
-				if response != nil && response.BytesPerSecond() > 0 {
-					stalledDownloadTimer.Reset(timeoutDuration)
-				} else {
-					//a download is stalling
+			for i, response := range downloadResponses {
+				if !response.IsComplete() && response.BytesPerSecond() <= 0 && downloadResponseCounters[i] < 10 {
+					downloadResponseCounters[i] ++
+					if downloadResponseCounters[i] == 10 {
+						fmt.Println(fmt.Sprintf("RESPONSE CLOSED!!! for %d", i))
+						response.Done()  //stop download
+						response.SetDidTimeout()
+					}
 				}
 			}
-
-		case stalledResponse := <-stalledDownloadChannel:
-			stalledResponse.Done()  //stop download
-			stalledResponse.SetDidTimeout()
-			fmt.Println(fmt.Sprintf("Download has stalled: %s ; %s", stalledResponse.Filename(), stalledResponse.DidTimeout()))
 		}
 	}
 }
